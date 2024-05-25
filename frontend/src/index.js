@@ -7,25 +7,20 @@ import {
   RouterProvider,
 } from "react-router-dom";
 // import 'bootstrap/dist/css/bootstrap.min.css';
-// import "./assets/styles/bootstrap.custom.css";
-// import "./assets/styles/styles.css";
-// import "./assets/styles/animations.css";
+import "./assets/styles/bootstrap.custom.css";
+import "./assets/styles/styles.css";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-
 const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<App/>}>
-    </Route>
-  )
-)
+  createRoutesFromElements(<Route path="/" element={<App />}></Route>)
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
