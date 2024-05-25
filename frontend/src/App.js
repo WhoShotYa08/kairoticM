@@ -1,7 +1,14 @@
+import { Outlet } from "react-router-dom"
+import Header from "./components/header"
+
 export default function App() {
   return(
     <>
-      Hello, World! I like juice
+      <Header/>
+      <main>
+        <Outlet/>
+      </main>
+      
     </>
   )
 }
