@@ -18,6 +18,7 @@ export default function FileUploadScreen() {
   };
 
   return (
+<<<<<<< HEAD
     <Container>
       <div className="containerOne">
         <div>
@@ -40,5 +41,26 @@ export default function FileUploadScreen() {
         </div>
       </div>
     </Container>
+=======
+    <div className="containerOne" >
+      <h1 className="text-danger">Uploading Document</h1>
+      <div>
+        <h2 className="text-dark text-center">File Upload</h2>
+        <div className="containerTwo w-75 p-3 h-60 d-inline-block col-md-8 offset-md-2 text-center">
+          <div>
+            <input type="file" onChange={handleFileUpload} />
+            {iconUrl && <DraggableIcon icon={<WiCloudDown size={400} />} />}
+          </div>
+          <br />
+          <h6 className="text-dark">OR</h6>
+          <h5 className="text-dark">Drop your file here</h5>
+          <div>
+            <h6>drawingOneFromAutoCad.pdsx</h6>
+            <ProgressBar now={60} />
+          </div>
+        </div>
+      </div>
+    </div>
+>>>>>>> main
   );
 }

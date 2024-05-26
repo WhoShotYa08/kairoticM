@@ -4,12 +4,12 @@ import { IoGridOutline } from "react-icons/io5";
 
 export default function SidePanel({ displayScreen, changeTo }) {
   return (
-    <Col className="mx-auto">
+    <Col className="mx-auto sideBar">
       <Row md={12}>
         <Col md={3}>
-          <button className="button" onClick={() => {}}>
+          {/* <button className="button" onClick={() => {}}>
             <IoGridOutline />
-          </button>
+          </button> */}
         </Col>
 
         <Col>
@@ -24,8 +24,8 @@ export default function SidePanel({ displayScreen, changeTo }) {
             borderBottom:
               displayScreen === "upload" ? "3px solid rgb(68,166,173)" : "none",
           }}
-          onClick={() => {changeTo("upload")
-            console.log(displayScreen)
+          onClick={() => {
+            changeTo("upload");
           }}
         >
           Upload Documents
@@ -38,8 +38,8 @@ export default function SidePanel({ displayScreen, changeTo }) {
             borderBottom:
               displayScreen === "signee" ? "3px solid rgb(68,166,173)" : "none",
           }}
-          onClick={() => {changeTo("signee")
-            console.log(displayScreen)
+          onClick={() => {
+            changeTo("signee");
           }}
         >
           Authorized signee's
