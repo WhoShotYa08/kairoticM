@@ -75,7 +75,10 @@
     transition: all 0.475s;
   }
   .containerOne{
-    background-color: #E0F2F1
+    background-color: rgba(68, 166, 173, 0.4);
+    height: 85vh;
+    justify-content: center;
+    align-items: center;
   }
   .containerTwo{
     border: 2px dotted #000;
@@ -100,3 +103,8 @@
     margin: 0  auto;
   }
   
+  @media (max-width: 575px) {
+    .sideBar {
+        display: none;
+    }
+  }

@@ -10,21 +10,24 @@ export default function HomeScreen() {
     border: "1px solid rgb(0, 0, 0)",
   };
 
-  const [screen, changeScreen] = useState("signee");
+  const [screen, changeScreen] = useState("upload");
 
   return (
     <React.Fragment>
       <Container>
         <Row>
-          <Col md={3} style={mainContainter}>
-            <SidePanel displayScreen={screen} changeTo={changeScreen}/>
+          <Col md={3}>
+            <SidePanel displayScreen={screen} changeTo={changeScreen} />
           </Col>
 
-          <Col style={mainContainter}>
-            {
-                screen === 'upload'? (<FileUploadScreen/>): screen === 'signee'? (<AuthorizeSignee/>): <AuthorizeDrawing/>
-            }
-
+          <Col>
+            {screen === "upload" ? (
+              <FileUploadScreen />
+            ) : screen === "signee" ? (
+              <AuthorizeSignee />
+            ) : (
+              <AuthorizeDrawing />
+            )}
           </Col>
         </Row>
       </Container>
