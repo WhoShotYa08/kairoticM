@@ -18,25 +18,25 @@ export default function Header() {
             <Nav className="mx-auto">
               <LinkContainer to="/">
                 <Nav.Link>
-                  Home
+                  <span>Home</span>
                 </Nav.Link>
               </LinkContainer>
 
               <LinkContainer to="/about">
                 <Nav.Link>
-                  About
+                  <span>About</span>
                 </Nav.Link>
               </LinkContainer>
 
               <LinkContainer to="/service">
                 <Nav.Link>
-                  Services
+                  <span>Services</span>
                 </Nav.Link>
               </LinkContainer>
 
               <LinkContainer to="/contacts">
                 <Nav.Link>
-                  Contacts
+                  <span>Contacts</span>
                 </Nav.Link>
               </LinkContainer>
             </Nav>
@@ -49,7 +49,7 @@ export default function Header() {
               </LinkContainer>
 
               <LinkContainer to="/">
-                <Nav.Link className="btn btn-width btn-login btn-dark">
+                <Nav.Link className="btn btn-width btn-login">
                   <span className="btn-login-content">Login</span>
                 </Nav.Link>
               </LinkContainer>
