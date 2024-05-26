@@ -1,30 +1,29 @@
 import React from "react";
 import { FaGooglePlus } from "react-icons/fa6";
+import '../assets/styles/animations/animations.css'
 
 export default function SignUp() {
   return (
     <div className="overflow-hidden" style={{ height: "100%" }}>
-      <div className="row h-100 g-0">
-        <div className="col-lg-3 h-100 border rounded-3" style={{}}>
+      <div className="row h-100 g-0 position-relative">
+        <div className="col-lg-3 h-100 border rounded-3" style={{ position: "relative" }}>
           <div
             className=""
             style={{
               backgroundColor: "teal",
-              //   paddingTop: "77%",
-              //   paddingBottom: "78%",
             }}
           >
             <div className="">
               <h4 className="text-white fw-light invisible">
                 Tailored Engineering.
               </h4>
-              <h4 className="text-white fw-bold p-0 m-0">
+              <h4 className="text-white fw-bold p-0 m-0 mx-1">
                 Tailored Engineering
               </h4>
-              <h4 className="fw-bold text-white p-0 my-3"> Design Solutions.</h4>
-              <p className="text-white fs-10">
-                was established after identifying a need to supply our Clients
-                with full turnkey solution to meet their business and project
+              <h4 className="fw-bold text-white p-0 my-1 mx-2"> Design Solutions.</h4>
+              <p className="text-white fs-11 mt-3 mx-2">
+                Established after identifying a need to supply our Clients
+                with full turn key solution to meet their business and project
                 execution objectives.
               </p>
             </div>
@@ -32,15 +31,16 @@ export default function SignUp() {
               Project & Construction Management Service.
             </h4>
 
-            <div className="invisible">
+            <div className="invisible d-none">
               <h4>Providing tailored Engineering Design Solutions.</h4>
               <h4>Project & Construction Management Service.</h4>
             </div>
-            <div className="invisible pb-1">
+            <div className="invisible pb-5">
               <h4>Providing tailored Engineering Design Solutions.</h4>
               <h4>Project & Construction Management Service.</h4>
             </div>
           </div>
+          <img src="images\hero-carousel\hero-carousel-3.svg" className="img-fluid animated hover-animation hoverAnim" alt="hero" style={{ position: "absolute", top: 250, left: 60, width: "100%", height: "auto" }} />
         </div>
         <div className="col-lg-9 border rounded-end rounded-3">
           <div className="mx-5 py-4">

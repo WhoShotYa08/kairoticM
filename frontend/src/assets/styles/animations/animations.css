@@ -1,0 +1,12 @@
+.hoverAnim {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    animation: myfirst 2s linear 1s infinite alternate;
+  }
+  
+  @keyframes myfirst {
+    0%   {top: 40%;}
+    50%  {top:43%;}
+    100% {top: 46%;}
+  }
