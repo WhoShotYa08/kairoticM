@@ -13,9 +13,13 @@
   "author": "Belo Adrien",
   "license": "ISC",
   "dependencies": {
+    "@types/react-dnd": "^3.0.2",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dropzone": "^14.2.3"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
