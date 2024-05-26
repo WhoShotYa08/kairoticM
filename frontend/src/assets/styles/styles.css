@@ -57,9 +57,12 @@
   }
 
   .button {
+    position: relative;
     justify-content: center;
     border: none;
     padding: 1rem;
     background-color: transparent;
+    width: 80%;
+    margin: 0  auto;
   }
   

@@ -5,8 +5,6 @@ import SidePanel from "../components/sidePanel";
 export default function HomeScreen() {
   const mainContainter = {
     border: "1px solid rgb(0, 0, 0)",
-    // height: "100vh",
-    // width: "25vw",
     margin: 10,
   };
 
@@ -14,7 +12,7 @@ export default function HomeScreen() {
     <React.Fragment>
       <Container>
         <Row>
-          <Col md={3} style={mainContainter}>
+          <Col md={3} style={{justifyContent: 'center', border: "1px solid rgb(0, 0, 0)",}}>
             <SidePanel />
           </Col>
 

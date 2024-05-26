@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { IoGridOutline } from "react-icons/io5";
 
 export default function SidePanel() {
+  const [currentPage, setCurrentPage] = useState("upload");
+
+  const handleChangeScreen = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
-    <Col>
+    <Col className="mx-auto">
       <Row md={12}>
-        <Col md={3} style={{justifyContent: 'center', alignItems: 'center'}}>
-            <button className="button" onClick={()=>{}}>
-                <IoGridOutline/>
-            </button>
+        <Col md={3}>
+          <button className="button" onClick={() => {}}>
+            <IoGridOutline />
+          </button>
         </Col>
 
         <Col>
@@ -18,16 +24,52 @@ export default function SidePanel() {
       </Row>
 
       <Row>
-        <button className='button'>Upload Documents</button>
+        <button
+          className="button"
+          style={{
+            borderBottom:
+              currentPage === "upload" ? "3px solid rgb(68,166,173)" : "none",
+          }}
+          onClick={()=>setCurrentPage("upload")}
+        >
+          Upload Documents
+        </button>
       </Row>
       <Row>
-        <button className='button'>Authorized signee's</button>
+        <button
+          className="button"
+          style={{
+            borderBottom:
+              currentPage === "signee" ? "3px solid rgb(68,166,173)" : "none",
+          }}
+          onClick={()=>setCurrentPage('signee')}
+        >
+          Authorized signee's
+        </button>
       </Row>
       <Row>
-        <button className='button'>Authorize Drawings</button>
+        <button
+          className="button"
+          style={{
+            borderBottom:
+              currentPage === "drawing" ? "3px solid rgb(68,166,173)" : "none",
+          }}
+          onClick={()=>setCurrentPage("drawing")}
+        >
+          Authorize Drawings
+        </button>
       </Row>
       <Row>
-        <button className='button'>Track Progress</button>
+        <button
+          className="button"
+          style={{
+            borderBottom:
+              currentPage === "progress" ? "3px solid rgb(68,166,173)" : "none",
+          }}
+          onClick={()=>setCurrentPage('progress')}
+        >
+          Track Progress
+        </button>
       </Row>
     </Col>
   );
