@@ -7,6 +7,7 @@ const DraggableIcon = ({ icon }) => {
   });
 
   return (
+    
     <div ref={drag}>
       {icon}
     </div>
