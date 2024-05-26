@@ -3,8 +3,13 @@
 =======================================
  
 1. NAVIGATION BAR
+2. SIDE PANEL
+
 */
-/* NAVIGATION BAR */
+/* 
+***************** NAVIGATION BAR ****************
+================================================= 
+*/
 .nav-logo{
     width: 60px;
 }
@@ -46,5 +51,24 @@
   }
   .containerTwo{
     border: 2px dotted #000;
+  }
+
+  /* 
+  ******************* SIDE PANEL *******************
+  ==================================================
+  */
+
+  .panel-img {
+    width: 10rem
+  }
+
+  .button {
+    position: relative;
+    justify-content: center;
+    border: none;
+    padding: 1rem;
+    background-color: transparent;
+    width: 80%;
+    margin: 0  auto;
   }
   
