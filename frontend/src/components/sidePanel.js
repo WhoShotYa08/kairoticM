@@ -1,14 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { IoGridOutline } from "react-icons/io5";
 
-export default function SidePanel() {
-  const [currentPage, setCurrentPage] = useState("upload");
-
-  const handleChangeScreen = (page) => {
-    setCurrentPage(page);
-  };
-
+export default function SidePanel({ displayScreen, changeTo }) {
   return (
     <Col className="mx-auto">
       <Row md={12}>
@@ -28,9 +22,11 @@ export default function SidePanel() {
           className="button"
           style={{
             borderBottom:
-              currentPage === "upload" ? "3px solid rgb(68,166,173)" : "none",
+              displayScreen === "upload" ? "3px solid rgb(68,166,173)" : "none",
           }}
-          onClick={()=>setCurrentPage("upload")}
+          onClick={() => {changeTo("upload")
+            console.log(displayScreen)
+          }}
         >
           Upload Documents
         </button>
@@ -40,9 +36,11 @@ export default function SidePanel() {
           className="button"
           style={{
             borderBottom:
-              currentPage === "signee" ? "3px solid rgb(68,166,173)" : "none",
+              displayScreen === "signee" ? "3px solid rgb(68,166,173)" : "none",
           }}
-          onClick={()=>setCurrentPage('signee')}
+          onClick={() => {changeTo("signee")
+            console.log(displayScreen)
+          }}
         >
           Authorized signee's
         </button>
@@ -52,9 +50,11 @@ export default function SidePanel() {
           className="button"
           style={{
             borderBottom:
-              currentPage === "drawing" ? "3px solid rgb(68,166,173)" : "none",
+              displayScreen === "drawing"
+                ? "3px solid rgb(68,166,173)"
+                : "none",
           }}
-          onClick={()=>setCurrentPage("drawing")}
+          onClick={() => changeTo("drawing")}
         >
           Authorize Drawings
         </button>
@@ -64,9 +64,11 @@ export default function SidePanel() {
           className="button"
           style={{
             borderBottom:
-              currentPage === "progress" ? "3px solid rgb(68,166,173)" : "none",
+              displayScreen === "progress"
+                ? "3px solid rgb(68,166,173)"
+                : "none",
           }}
-          onClick={()=>setCurrentPage('progress')}
+          onClick={() => changeTo("progress")}
         >
           Track Progress
         </button>
