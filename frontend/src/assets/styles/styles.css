@@ -1,0 +1,15 @@
+/* 
+**********TABLE OF CONTACTS************ 
+=======================================
+
+1. NAVIGATION BAR
+*/
+/* NAVIGATION BAR */
+.nav-logo{
+    width: 60px;
+}
+
+.btn-width {
+    width: 5rem;
+    margin: 0 5px;
+}
