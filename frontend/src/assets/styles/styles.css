@@ -1,7 +1,7 @@
 /* 
 **********TABLE OF CONTACTS************ 
 =======================================
-
+ 
 1. NAVIGATION BAR
 2. SIDE PANEL
 
@@ -45,6 +45,12 @@
       /* rgb(14,114,124); */
       rgb(68,166,173);
     transition: all 0.475s;
+  }
+  .containerOne{
+    background-color: #E0F2F1
+  }
+  .containerTwo{
+    border: 2px dotted #000;
   }
 
   /* 
