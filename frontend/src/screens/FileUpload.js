@@ -1,6 +1,5 @@
 import React, { useState} from "react";
 import { Container ,ProgressBar, } from "react-bootstrap";
-import { useDropzone } from 'react-dropzone';
 import { WiCloudDown} from "react-icons/wi";
 import DraggableIcon from "../components/draggable";
 
