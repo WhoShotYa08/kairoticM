@@ -49,8 +49,8 @@ export default function Header() {
               </LinkContainer>
 
               <LinkContainer to="/">
-                <Nav.Link className="btn btn-width btn-dark">
-                  Login
+                <Nav.Link className="btn btn-width btn-login">
+                  <span className="btn-login-content">Login</span>
                 </Nav.Link>
               </LinkContainer>
             </Nav>
