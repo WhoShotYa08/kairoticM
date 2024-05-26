@@ -38,8 +38,8 @@
     border-radius: inherit;
     background: linear-gradient(
       82.3deg,
-      rgb(14,114,124) 94.3%,
-      rgb(68,166,173) 10.8%
+      rgb(14,114,124) 10.8%,
+      rgb(68,166,173) 94.3%
     );
     transition: all 0.475s;
   }
