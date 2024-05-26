@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, ProgressBar } from "react-bootstrap";
 import SidePanel from "../components/sidePanel";
 import FileUploadScreen from "./FileUpload";
 import AuthorizeDrawingScreen from "./AuthorizeDrawings";
 import AuthorizeSigneesScreen from "./AuthorizeSignees";
+import ProgressTracking from "./ProgressTracking";
 
 export default function HomeScreen() {
   const mainContainter = {
@@ -25,8 +26,10 @@ export default function HomeScreen() {
               <FileUploadScreen />
             ) : screen === "signee" ? (
               <AuthorizeSigneesScreen />
-            ) : (
+            ) : screen === "drawing" ? (
               <AuthorizeDrawingScreen />
+            ) : (
+              <ProgressTracking />
             )}
           </Col>
         </Row>
