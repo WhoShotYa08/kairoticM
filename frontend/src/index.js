@@ -15,6 +15,7 @@ import reportWebVitals from "./reportWebVitals";
 import HomeScreen from "./screens/HomeScreen";
 import FileUploadScreen from "./screens/FileUpload";
 import AuthorizeSigneesScreen from "./screens/AuthorizeSignees";
+import AuthorizeDrawingScreen from "./screens/AuthorizeDrawings";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<HomeScreen />} />
       <Route path="/Upload" element={<FileUploadScreen />} />
       <Route path="/AuthorizeSignees" element={<AuthorizeSigneesScreen />} />
+      <Route path="/AuthorizeDrawings" element={<AuthorizeDrawingScreen/>}/>
     </Route>
   )
 );

@@ -10,7 +10,7 @@ export default function AuthorizeSigneesScreen(){
       ];
 
     return(
-        <Container>
+        <Container style={{flex:'1'}}>
       <div className="containerOne">
         <h1 className="text-danger">Authorize Signee's</h1>
         <table className="signee-table">
