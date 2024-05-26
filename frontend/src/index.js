@@ -7,21 +7,20 @@ import {
   RouterProvider,
 } from "react-router-dom";
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import "./assets/styles/bootstrap.custom.css";
-import "./assets/styles/styles.css";
+import "./assets/bootstrap.custom.css";
+import "./assets/styles.css";
+import "./assets/animations.css"
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import HomeScreen from "./screens/HomeScreen";
-import FileUploadScreen from "./screens/FileUpload";
-import AuthorizeSigneesScreen from "./screens/AuthorizeSignees";
-import AuthorizeDrawingScreen from "./screens/AuthorizeDrawings";
+import SignUp from "./screens/SignUp";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
-      {/* <Route path="/Upload" element={<FileUploadScreen />} /> */}
+      <Route path="/signUp" element={<SignUp />} />
       {/* <Route path="/contacts" element={<AuthorizeSigneesScreen />} />
       <Route path="/AuthorizeDrawings" element={<AuthorizeDrawingScreen/>}/> */}
     </Route>

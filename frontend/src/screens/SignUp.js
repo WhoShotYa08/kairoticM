@@ -1,6 +1,5 @@
 import React from "react";
 import { FaGooglePlus } from "react-icons/fa6";
-import '../assets/styles/animations/animations.css'
 
 export default function SignUp() {
   return (
