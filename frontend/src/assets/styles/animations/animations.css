@@ -10,3 +10,11 @@
     50%  {top:43%;}
     100% {top: 46%;}
   }
+
+  @media (max-width: 575px) {
+    /*By default, containers are only full-width on xs screens. 
+    This makes them full-width om sm screens as well*/
+    .floatingImg {
+      max-width: 70%;
+    }
+  }

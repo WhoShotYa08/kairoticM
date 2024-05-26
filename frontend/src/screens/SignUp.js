@@ -40,7 +40,7 @@ export default function SignUp() {
               <h4>Project & Construction Management Service.</h4>
             </div>
           </div>
-          <img src="images\hero-carousel\hero-carousel-3.svg" className="img-fluid animated hover-animation hoverAnim" alt="hero" style={{ position: "absolute", top: 250, left: 60, width: "100%", height: "auto" }} />
+          <img src="images\hero-carousel\hero-carousel-3.svg" className="img-fluid animated hover-animation hoverAnim floatingImg" alt="hero" style={{ position: "absolute", top: 250, left: 60, width: "100%", height: "auto" }} />
         </div>
         <div className="col-lg-9 border rounded-end rounded-3">
           <div className="mx-5 py-4">
