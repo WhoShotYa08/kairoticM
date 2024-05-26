@@ -12,9 +12,15 @@ import "./assets/styles/styles.css";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import HomeScreen from "./screens/HomeScreen";
 
 const router = createBrowserRouter(
-  createRoutesFromElements(<Route path="/" element={<App />}></Route>)
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      <Route index={true} path="/" element={<HomeScreen />} />
+      {/* <Route path="/product/:id" element={<ProductScreen />} /> */}
+    </Route>
+  )
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
