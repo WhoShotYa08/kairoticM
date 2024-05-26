@@ -28,19 +28,6 @@ export default function Header() {
                 </Nav.Link>
               </LinkContainer>
 
-
-              <LinkContainer to="/AuthorizeSignees">
-                <Nav.Link>
-                  <span>Authorize Signee's</span>
-                </Nav.Link>
-              </LinkContainer>
-
-              <LinkContainer to="/AuthorizeDrawings">
-                <Nav.Link>
-                  <span>Authorize Drawings</span>
-                </Nav.Link>
-              </LinkContainer>
-
               <LinkContainer to="/service">
                 <Nav.Link>
                   <span>Services</span>

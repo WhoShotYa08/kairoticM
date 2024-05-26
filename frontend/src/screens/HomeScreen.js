@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import SidePanel from "../components/sidePanel";
 import FileUploadScreen from "./FileUpload";
-import AuthorizeSignee from "./Signee";
-import AuthorizeDrawing from "./Drawing";
+import AuthorizeDrawingScreen from "./AuthorizeDrawings";
+import AuthorizeSigneesScreen from "./AuthorizeSignees";
 
 export default function HomeScreen() {
   const mainContainter = {
@@ -24,9 +24,9 @@ export default function HomeScreen() {
             {screen === "upload" ? (
               <FileUploadScreen />
             ) : screen === "signee" ? (
-              <AuthorizeSignee />
+              <AuthorizeSigneesScreen />
             ) : (
-              <AuthorizeDrawing />
+              <AuthorizeDrawingScreen />
             )}
           </Col>
         </Row>

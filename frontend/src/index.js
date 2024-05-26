@@ -21,9 +21,9 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
-      <Route path="/Upload" element={<FileUploadScreen />} />
-      <Route path="/AuthorizeSignees" element={<AuthorizeSigneesScreen />} />
-      <Route path="/AuthorizeDrawings" element={<AuthorizeDrawingScreen/>}/>
+      {/* <Route path="/Upload" element={<FileUploadScreen />} /> */}
+      {/* <Route path="/contacts" element={<AuthorizeSigneesScreen />} />
+      <Route path="/AuthorizeDrawings" element={<AuthorizeDrawingScreen/>}/> */}
     </Route>
   )
 );
