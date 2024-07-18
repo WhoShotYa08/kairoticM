@@ -16,7 +16,9 @@
     "@types/react-dnd": "^3.0.2",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
+    "cookie-parser": "^1.4.6",
     "express": "^4.19.2",
+    "mongoose": "^8.5.1",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dropzone": "^14.2.3"
