@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { FaCog } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { AiFillApple } from 'react-icons/ai';
-import { FaHelmetSafety } from 'react-icons/fa6'; // Importing helmet safety icon from react-icons
+import { FaHelmetSafety } from 'react-icons/fa6';
 
 
 
