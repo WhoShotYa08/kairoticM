@@ -7,7 +7,7 @@ import { FaHelmetSafety } from 'react-icons/fa6'; // Importing helmet safety ico
 
 
 
-const LoginPage = () => {
+const SignUpPage = () => {
   return (
     <Container>
       <Circle1/>
@@ -204,4 +204,4 @@ const Icon = styled.span`
   align-items: center;
 `;
 
-export default LoginPage;
+export default SignUpPage;
