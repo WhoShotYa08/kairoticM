@@ -1,100 +1,207 @@
-import React from "react";
-import { FaGooglePlus } from "react-icons/fa6";
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
+import { FaCog } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
+import { AiFillApple } from 'react-icons/ai';
+import { FaHelmetSafety } from 'react-icons/fa6'; // Importing helmet safety icon from react-icons
 
-export default function SignUp() {
+
+
+const LoginPage = () => {
   return (
-    <div className="overflow-hidden" style={{ height: "100%" }}>
-      <div className="row h-100 g-0 position-relative">
-        <div className="col-lg-3 h-100 border rounded-3" style={{ position: "relative" }}>
-          <div
-            className=""
-            style={{
-              backgroundColor: "teal",
-            }}
-          >
-            <div className="">
-              <h4 className="text-white fw-light invisible">
-                Tailored Engineering.
-              </h4>
-              <h4 className="text-white fw-bold p-0 m-0 mx-1">
-                Tailored Engineering
-              </h4>
-              <h4 className="fw-bold text-white p-0 my-1 mx-2"> Design Solutions.</h4>
-              <p className="text-white fs-11 mt-3 mx-2">
-                Established after identifying a need to supply our Clients
-                with full turn key solution to meet their business and project
-                execution objectives.
-              </p>
-            </div>
-            <h4 className="invisible">
-              Project & Construction Management Service.
-            </h4>
-
-            <div className="invisible d-none">
-              <h4>Providing tailored Engineering Design Solutions.</h4>
-              <h4>Project & Construction Management Service.</h4>
-            </div>
-            <div className="invisible pb-5">
-              <h4>Providing tailored Engineering Design Solutions.</h4>
-              <h4>Project & Construction Management Service.</h4>
-            </div>
-          </div>
-          <img src="images\hero-carousel\hero-carousel-3.svg" className="img-fluid animated hover-animation hoverAnim floatingImg" alt="hero" style={{ position: "absolute", top: 250, left: 60, width: "100%", height: "auto" }} />
-        </div>
-        <div className="col-lg-9 border rounded-end rounded-3">
-          <div className="mx-5 py-4">
-            <div className="text-center">
-              <h2 className="my-4 text-dark">Sign In</h2>
-              <p>or login with</p>
-              <button
-                className="btn btn-danger text-white fw-bold"
-                type="button"
-              >
-                <FaGooglePlus className="mx-3" size={25} />
-                GOOGLE
-              </button>
-            </div>
-
-            <form className="align-self-center">
-              <div
-                className="form-floating mb-3 rounded-2 border-end"
-                style={{ width: "95%" }}
-              >
-                <input
-                  type="email"
-                  className="form-control bg-white border-bottom borders border-2 "
-                  id="floatingInput"
-                  placeholder="name@example.com"
-                />
-                <label htmlFor="floatingInput">Email address</label>
-              </div>
-              <div
-                className="form-floating border-end "
-                style={{ width: "95%" }}
-              >
-                <input
-                  type="password"
-                  className="form-control bg-white border-bottom borders border-end-0 border-2"
-                  id="floatingPassword"
-                  placeholder="Password"
-                />
-
-                <label htmlFor="floatingPassword">Password</label>
-              </div>
-
-              <div className="d-grid gap-2">
-                <button
-                  className="btn btn-primary my-5"
-                  type="button"
-                  style={{ width: "95%", backgroundColor: "teal" }}
-                >
-                  Sign In
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Container>
+      <Circle1/>
+      <Circle2 />
+      <Circle3 />
+      <Circle4 />
+      <LoginBox>
+        <LeftPanel>
+          <Logo src={require('./Kairotic_M_Logo.png')} alt="Kairotic M Logo" />
+          <RotatingIcon />
+          <HelmetIcon />
+        </LeftPanel>
+        <RightPanel>
+          <Title>Login</Title>
+          <Input type="text" placeholder="Username" />
+          <Input type="password" placeholder="Password" />
+          <Button>Login</Button>
+          <IconButton>
+            <Icon>
+              <AiFillApple size={20} />
+            </Icon>
+            Continue with Apple
+          </IconButton>
+          <IconButton>
+            <Icon>
+              <FcGoogle size={20} />
+            </Icon>
+            Continue with Google
+          </IconButton>
+        </RightPanel>
+      </LoginBox>
+    </Container>
   );
-}
+};
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const Container = styled.div`
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: #e9f7f6;
+  position: relative; 
+`;
+
+const Circle = styled.div`
+  width: 350px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: #2a9d8f;
+  position: absolute;
+  opacity: 0.5; 
+`;
+
+const Circle1 = styled(Circle)`
+  top: 8%;
+  right: 25%;
+`;
+
+const Circle2 = styled(Circle)`
+  top: 8%;
+  right: 13%;
+  background-color: #C1E9E5;
+`;
+
+const Circle3 = styled(Circle)`
+  bottom: 13%;
+  right: 10%;
+`;
+const Circle4 = styled(Circle)`
+  bottom: 8%;
+  right: 22%;
+  background-color: #C1E9E5;
+`;
+
+const LoginBox = styled.div`
+  display: flex;
+  width: 60%;
+  height: 70%;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 1; 
+`;
+
+const LeftPanel = styled.div`
+  flex: 1;
+  background-color: #2a9d8f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  position: relative;
+`;
+
+const RotatingIcon = styled(FaCog)`
+  font-size: 85px;
+  animation: ${rotate} 70s linear infinite;
+  color: #D5EAE7;
+  position: relative;
+  bottom: %;
+`;
+
+const HelmetIcon = styled(FaHelmetSafety)`
+  position: absolute;
+  top: 25%;
+  font-size: 90px;
+  color: #D5EAE7;
+`;
+
+const Logo = styled.img`
+  position: absolute;
+  top: 5%;
+  left: 15%;
+  width: 20vw;
+  height: auto; 
+  max-width: 400px; 
+
+  @media (max-width: 768px) {
+    width: 30vw; // Adjust for smaller screens
+  }
+
+  @media (max-width: 480px) {
+    width: 40vw; // Further adjust for very small screens
+  }
+`;
+
+const RightPanel = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+`;
+
+const Title = styled.h1`
+  margin-bottom: 20px;
+  color: #2a9d8f;
+`;
+
+const Input = styled.input`
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+`;
+
+const Button = styled.button`
+  width: 80%;
+  padding: 10px;
+  margin: 20px 0;
+  background-color: #2a9d8f;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: #21867a;
+  }
+`;
+
+const IconButton = styled.button`
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #ffffff;
+  color: #2a9d8f;
+  border: 1px solid #2a9d8f;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: #f2f2f2;
+  }
+`;
+
+const Icon = styled.span`
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+`;
+
+export default LoginPage;
