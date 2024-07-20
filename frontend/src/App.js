@@ -1,3 +1,6 @@
+import React from "react";
+import { ToastContainer } from "react-bootstrap";
+import 'react-toastify/dist/ReactToastify.css';
 import { Outlet } from "react-router-dom";
 import Header from "./components/header";
 
@@ -8,6 +11,7 @@ export default function App() {
       <main>
         <Outlet />
       </main>
+      <ToastContainer/>
     </>
   );
 }
