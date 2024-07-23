@@ -29,41 +29,13 @@ export default function Header() {
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
-              <img
-                src="/images/logo.png"
-                alt="KairoticM's Logo"
-                className="nav-logo"
-              />
+              <img src="/images/logo.png" alt="KairoticM's Logo" className="nav-logo"/>
             </Navbar.Brand>
           </LinkContainer>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mx-auto">
-              <LinkContainer to="/">
-                <Nav.Link>
-                  <span>Home</span>
-                </Nav.Link>
-              </LinkContainer>
-
-              <LinkContainer to="/Upload">
-                <Nav.Link>
-                  <span>Upload</span>
-                </Nav.Link>
-              </LinkContainer>
-
-              <LinkContainer to="/service">
-                <Nav.Link>
-                  <span>Services</span>
-                </Nav.Link>
-              </LinkContainer>
-
-              <LinkContainer to="/contacts">
-                <Nav.Link>
-                  <span>Contacts</span>
-                </Nav.Link>
-              </LinkContainer>
-            </Nav>
+            <Nav className="mx-auto"></Nav>
 
             {userInfo ? (
               <NavDropdown title={userInfo.name} id="username">
