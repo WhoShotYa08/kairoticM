@@ -4,6 +4,7 @@
  
 1. NAVIGATION BAR
 2. SIDE PANEL
+3. LOGIN PAGE COMPONENTS
 
 */
 /* 
@@ -107,4 +108,30 @@
     .sideBar {
         display: none;
     }
+  }
+
+
+
+  /* 
+  ==========================================================
+                    LOGIN SCREEN COMPONENTS
+  ==========================================================
+   */
+
+  .icon-btn {
+    width: 80%;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #2a9d8f;
+    border: 1px solid #2a9d8f;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-btn:hover {
+    background-color: #f2f2f2;
+    color: black;
   }

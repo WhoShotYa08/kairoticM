@@ -1,17 +1,17 @@
-import React from 'react';
-import { useDrag } from 'react-dnd';
+// import React from 'react';
+// import { useDrag } from 'react-dnd';
 
-const DraggableIcon = ({ icon }) => {
-  const [, drag] = useDrag({
-    item: { type: 'icon', icon },
-  });
+// const DraggableIcon = ({ icon }) => {
+//   const [, drag] = useDrag({
+//     item: { type: 'icon', icon },
+//   });
 
-  return (
+//   return (
     
-    <div ref={drag}>
-      {icon}
-    </div>
-  );
-};
+//     <div ref={drag}>
+//       {icon}
+//     </div>
+//   );
+// };
 
-export default DraggableIcon;
+// export default DraggableIcon;
