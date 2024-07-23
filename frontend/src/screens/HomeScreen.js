@@ -5,6 +5,7 @@ import FileUploadScreen from "./FileUpload";
 import AuthorizeDrawingScreen from "./AuthorizeDrawings";
 import AuthorizeSigneesScreen from "./AuthorizeSignees";
 import ProgressTracking from "./ProgressTracking";
+import SavedDocumentsScreen from "./SavedDocuments";
 
 export default function HomeScreen() {
   const mainContainter = {
@@ -21,10 +22,13 @@ export default function HomeScreen() {
             <SidePanel displayScreen={screen} changeTo={changeScreen} />
           </Col>
 
-          <Col>
+          <Col className="" style={{overflow: 'auto'}}>
             {screen === "upload" ? (
               <FileUploadScreen />
-            ) : screen === "signee" ? (
+            ) : screen === "saved" ? (
+              <SavedDocumentsScreen />
+            ) 
+            : screen === "signee" ? (
               <AuthorizeSigneesScreen />
             ) : screen === "drawing" ? (
               <AuthorizeDrawingScreen />
