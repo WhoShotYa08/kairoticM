@@ -17,11 +17,13 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
+import LandingPage from "./screens/LandingScreen";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index={true} path="/" element={<HomeScreen />} />
+      <Route index={true} path="/home" element={<LandingPage />} />
+      <Route  path="/" element={<HomeScreen />} />
       <Route path="/login" element={<LoginScreen />} />
       {/* <Route path="/contacts" element={<AuthorizeSigneesScreen />} />
       <Route path="/AuthorizeDrawings" element={<AuthorizeDrawingScreen/>}/> */}

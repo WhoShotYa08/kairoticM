@@ -29,7 +29,11 @@ export default function Header() {
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
-              <img src="/images/logo.png" alt="KairoticM's Logo" className="nav-logo"/>
+              <img
+                src="/images/logo.png"
+                alt="KairoticM's Logo"
+                className="nav-logo"
+              />
             </Navbar.Brand>
           </LinkContainer>
 
@@ -49,6 +53,12 @@ export default function Header() {
               </NavDropdown>
             ) : (
               <Nav>
+                <LinkContainer to="/home">
+                  <Nav.Link className="btn btn-width btn-login">
+                    <span className="btn-login-content">Home</span>
+                  </Nav.Link>
+                </LinkContainer>
+
                 <LinkContainer to="/login">
                   <Nav.Link className="btn btn-width">Sign Up</Nav.Link>
                 </LinkContainer>
