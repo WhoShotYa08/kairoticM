@@ -18,8 +18,8 @@ const authUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      isAuthorized: user.isAuthorized,
       isEmployee: user.isEmployee,
-      isAuthorized: user.isAuthorized
     });
   } else {
     res.status(401);
@@ -44,8 +44,6 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     surname,
     email,
-    isEmployee,
-    isAuthorized,
     password,
   });
 
