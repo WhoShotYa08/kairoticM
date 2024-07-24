@@ -10,7 +10,7 @@ import { FaCog } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillApple } from "react-icons/ai";
 import { FaHelmetSafety } from "react-icons/fa6";
-import Loader from "../components/loader";
+import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
 import "../assets/styles.css";
 
