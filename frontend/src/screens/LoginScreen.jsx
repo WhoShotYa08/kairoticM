@@ -27,7 +27,7 @@ const rotate = keyframes`
 // Styled Components
 const Container = styled.div`
   display: flex;
-  height: 100vh;
+  height: 110vh;
   align-items: center;
   justify-content: center;
   position: relative;
