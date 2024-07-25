@@ -6,24 +6,29 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import { Provider } from "react-redux";
+import organization from "./organization";
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import "./assets/styles/bootstrap.custom.css";
-import "./assets/styles/styles.css";
+import "./assets/bootstrap.custom.css";
+import "./assets/styles.css";
+import "./assets/animations.css";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import HomeScreen from "./screens/HomeScreen";
-import FileUploadScreen from "./screens/FileUpload";
-import AuthorizeSigneesScreen from "./screens/AuthorizeSignees";
-import AuthorizeDrawingScreen from "./screens/AuthorizeDrawings";
+import LoginScreen from "./screens/LoginScreen";
+import LandingPage from "./screens/LandingScreen";
+import SignUpScreen from "./screens/SignUpScreen";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index={true} path="/" element={<HomeScreen />} />
-      <Route path="/Upload" element={<FileUploadScreen />} />
-      <Route path="/AuthorizeSignees" element={<AuthorizeSigneesScreen />} />
-      <Route path="/AuthorizeDrawings" element={<AuthorizeDrawingScreen/>}/>
+      <Route index={true} path="/home" element={<LandingPage />} />
+      <Route  path="/" element={<HomeScreen />} />
+      <Route path="/login" element={<LoginScreen />} />
+      <Route path="/register" element={<SignUpScreen />} />
+      {/* <Route path="/contacts" element={<AuthorizeSigneesScreen />} />
+      <Route path="/AuthorizeDrawings" element={<AuthorizeDrawingScreen/>}/> */}
     </Route>
   )
 );
@@ -31,7 +36,9 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={organization}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 

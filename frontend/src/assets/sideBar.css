@@ -1,0 +1,11 @@
+.top-nav .navbar-collapse {
+    display: flex !important;
+    flex-direction: row !important;
+  }
+  
+  @media (max-width: 991.98px) {
+    .top-nav .navbar-collapse {
+      flex-direction: column !important;
+    }
+  }
+  
