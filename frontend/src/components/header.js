@@ -40,7 +40,6 @@ export default function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mx-auto"></Nav>
-
             {userInfo ? (
               <NavDropdown title={userInfo.name} id="username">
                 <LinkContainer to={"/profile"}>

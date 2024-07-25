@@ -1,69 +1,59 @@
-import React, { useState } from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import React from "react";
+import { Form, Button } from "react-bootstrap";
+import '../index.css';
 
 export default function AuthorizeDrawingScreen() {
-  const [selectedDrawing, setSelectedDrawing] = useState("");
-  const [selectedUser, setSelectedUser] = useState("");
-
-  const drawings = ["DrawingOne.psdx", "DrawingTwo.psdx"];
-  const users = [
-    "Nokuhle Ngubane",
-    "Adrien Belo",
-    "Brian Mabukwa",
-    "Kgathiliso Mokgathle",
-  ];
-
-  const handleAuthorizeClick = () => {
-    alert(`Drawing: ${selectedDrawing}\nUser: ${selectedUser}`);
-  };
-
   return (
     <div className="containerOne">
+      <h1 className="text-primary">Authorize Signee's</h1>
       <Form>
-        <Form.Group controlId="selectDrawing">
-          <Form.Label>
-            Please select the drawing to authorize (*Select from uploaded
-            documents)
-          </Form.Label>
-          <Form.Control
-            as="select"
-            value={selectedDrawing}
-            onChange={(e) => setSelectedDrawing(e.target.value)}
-          >
-            <option value="">Select a drawing</option>
-            {drawings.map((drawing, index) => (
-              <option key={index} value={drawing}>
-                {drawing}
-              </option>
-            ))}
-          </Form.Control>
-        </Form.Group>
-
-        <Form.Group controlId="selectUser" className="mt-3">
-          <Form.Label>
-            Please select the users to authorize (*Select from Authorized Users)
-          </Form.Label>
-          <Form.Control
-            as="select"
-            value={selectedUser}
-            onChange={(e) => setSelectedUser(e.target.value)}
-          >
-            <option value="">Select a user</option>
-            {users.map((user, index) => (
-              <option key={index} value={user}>
-                {user}
-              </option>
-            ))}
-          </Form.Control>
-        </Form.Group>
-
-        <Button
-          variant="primary"
-          className="mt-3"
-          onClick={handleAuthorizeClick}
-        >
-          Authorize Drawing
-        </Button>
+        <div className="dropdown-row">
+          <div className="dropdown-container">
+            <label htmlFor="dropdown1">Drawings</label>
+            <select id="dropdown1" className="dropdown">
+              <option value="">Select Option 1</option>
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+            </select>
+          </div>
+          <div className="dropdown-container">
+            <label htmlFor="dropdown2">Signee's</label>
+            <select id="dropdown2" className="dropdown">
+              <option value="">Select Option 1</option>
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+            </select>
+          </div>
+        </div>
+        <div className="checkbox-column">
+          <div className="checkbox-group">
+            <label className="checkbox-label">Require All Signatures</label>
+            <div className="radio-group">
+              <label>
+                <input type="radio" name="checkbox1" value="yes" />
+                Yes
+              </label>
+              <label>
+                <input type="radio" name="checkbox1" value="no" />
+                No
+              </label>
+            </div>
+          </div>
+          <div className="checkbox-group">
+            <label className="checkbox-label">Send Out Once All Signed</label>
+            <div className="radio-group">
+              <label>
+                <input type="radio" name="checkbox2" value="yes" />
+                Yes
+              </label>
+              <label>
+                <input type="radio" name="checkbox2" value="no" />
+                No
+              </label>
+            </div>
+          </div>
+        </div>
+        <Button className="authorize-button" variant="primary">Authorize Drawing</Button>
       </Form>
     </div>
   );
