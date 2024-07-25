@@ -15,7 +15,7 @@ function MyDropzone() {
         const binaryStr = reader.result;
         console.log(binaryStr);
       };
-      reader.readAsArrayBuffer(file);
+      reader.readAsArrayBuffer(file);      
     });
   }, []);
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
@@ -27,7 +27,7 @@ function MyDropzone() {
 
   return (
     <div {...getRootProps()}>
-      <input {...getInputProps()} onChange={handleUpload} name="file"/>
+      <input {...getInputProps()} onChange={handleUpload} name="file" />
       <IoCloudUploadOutline size={150} color="" />
       <p>Drop your files here</p>
     </div>
