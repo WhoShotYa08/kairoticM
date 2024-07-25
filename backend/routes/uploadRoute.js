@@ -1,12 +1,12 @@
-const express = require("express");
+// const express = require("express");
 
-const router = express.Router();
+// const router = express.Router();
 
-const upload = require('../middleware/multer');
+// const upload = require('../middleware/multer');
 
-router.post('/upload', upload.single('file', (req, res) => {
-    console.log(req.body);
-    console.log(req.file);
-}))
+// router.post('/upload', upload.single('file', (req, res) => {
+//     console.log(req.body);
+//     console.log(req.file);
+// }))
 
-export default router;
+// export default router;

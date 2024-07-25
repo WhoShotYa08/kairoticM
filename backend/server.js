@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
-import upload from "./middleware/multer.js";
+// import upload from "./middleware/multer.js";
 
 dotenv.config();
 const port = process.env.PORT;
@@ -29,6 +29,6 @@ app.use("/api/users", userRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-app.use(upload);
+// app.use(upload);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
