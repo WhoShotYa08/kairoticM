@@ -1,37 +1,64 @@
 import { Container } from "react-bootstrap";
-import Progress from "../components/progressCircle";
+// import Progress from "../components/progressCircle";
+import AuthorizedUsers from "../components/authorizedUsers";
+
+const usersAuthorized = [
+  {
+    id: 1,
+    name: "Emily",
+    surname: "Clark",
+    approve: true,
+  },
+  {
+    id: 2,
+    name: "Maria",
+    surname: "Smith",
+    approve: true,
+  },
+  {
+    id: 3,
+    name: "John",
+    surname: "Doe",
+    approve: false,
+  },
+  {
+    id: 4,
+    name: "Jane",
+    surname: "Roe",
+    approve: null,
+  },
+  {
+    id: 5,
+    name: "Michael",
+    surname: "Johnson",
+    approve: false,
+  },
+];
 
 export default function ProgressTracking() {
   return (
     <Container>
-      <div className="containerOne">
-        <h1 className="text-danger">Progress Tracking</h1>
-        <div className="d-flex flex-row my-5">
-          <Progress
-            color="teal"
-            name="Nokuhle Ngubane"
-            signed="Signed"
-            val="inline"
-          />
-          <Progress
-            color="teal"
-            name="Adrien Belo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            signed="Signed"
-            val="inline"
-          />
-          <Progress
-            color="white"
-            name="Brian Mabukwa&nbsp;&nbsp;&nbsp;&nbsp;"
-            signed="Not Signed"
-            val="inline"
-          />
-          <Progress
-            color="white"
-            name="Kgatliso Mokgatle&nbsp;&nbsp;&nbsp;"
-            signed="Not Signed"
-            val="none"
-          />
-        </div>
+      <div className="containerOne overflow-x-auto table-bordered ">
+        <h4 className="text-success">Process Tracking</h4>
+        <table class="table table-light table-hover table-striped table-responsive ">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Surname</th>
+              <th scope="col">Approved</th>
+            </tr>
+          </thead>
+          <tbody>
+            {usersAuthorized.map((item) => (
+              <AuthorizedUsers
+                name={item.name}
+                surname={item.surname}
+                approve={item.approve}
+                key={item.id}
+              />
+            ))}
+          </tbody>
+        </table>
       </div>
     </Container>
   );
