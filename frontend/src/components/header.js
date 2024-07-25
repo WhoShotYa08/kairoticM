@@ -23,6 +23,10 @@ export default function Header() {
     }
   };
 
+    const checkoutHandler = () => {
+    navigate("/login?redirect=/shipping");
+  };
+
   return (
     <header>
       <Navbar expand="md" collapseOnSelect>

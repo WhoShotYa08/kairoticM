@@ -19,7 +19,7 @@ const authUser = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       isAuthorized: user.isAuthorized,
-      isEmployee: user.isEmployee,
+      
     });
   } else {
     res.status(401);
@@ -55,7 +55,7 @@ const registerUser = asyncHandler(async (req, res) => {
       email: user.email,
       surname: user.surname,
       isAdmin: user.isAdmin,
-      isEmployee: user.isEmployee,
+      
       isAuthorized: user.isAuthorized
     });
   } else {
@@ -84,7 +84,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      isEmployee: user.isEmployee,
+      
       isAuthorized: user.isAuthorized
     });
   } else {
@@ -113,7 +113,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
-      isEmployee: user.isEmployee,
+      
       isAuthorized: user.isAuthorized
     });
   } else {
