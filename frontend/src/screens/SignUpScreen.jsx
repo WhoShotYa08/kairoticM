@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 // import { FcGoogle } from "react-icons/fc";
 // import { AiFillApple } from "react-icons/ai";
 // import { FaHelmetSafety } from "react-icons/fa6";
-import Loader from "../components/Loader";
+import Loader from "../components/loader";
 import FormContainer from "../components/FormContainer";
 import "../assets/styles.css";
 
