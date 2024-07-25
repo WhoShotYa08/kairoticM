@@ -59,7 +59,7 @@ export default function Header() {
                   </Nav.Link>
                 </LinkContainer>
 
-                <LinkContainer to="/login">
+                <LinkContainer to="/register">
                   <Nav.Link className="btn btn-width">Sign Up</Nav.Link>
                 </LinkContainer>
 
