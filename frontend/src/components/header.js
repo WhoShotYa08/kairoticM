@@ -52,11 +52,11 @@ export default function Header() {
               </NavDropdown>
             ) : (
               <Nav>
-                <LinkContainer to="/home">
+                {/* <LinkContainer to="/home">
                   <Nav.Link className="btn btn-width btn-login">
                     <span className="btn-login-content">Home</span>
                   </Nav.Link>
-                </LinkContainer>
+                </LinkContainer> */}
 
                 <LinkContainer to="/register">
                   <Nav.Link className="btn btn-width">Sign Up</Nav.Link>

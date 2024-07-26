@@ -1,18 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Navbar, Nav, Form, Button as BootstrapButton, Row, Col } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLoginMutation } from '../slices/usersApiSlice';
-import { setCredentials } from '../slices/authSlice';
-import { toast } from 'react-toastify';
-import styled, { keyframes } from 'styled-components';
-import { FaCog } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc';
-import { AiFillApple } from 'react-icons/ai';
-import { FaHelmetSafety } from 'react-icons/fa6';
-import Loader from '../components/Loader';
-import FormContainer from '../components/FormContainer';
-import '../assets/styles.css';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  Navbar,
+  Nav,
+  Form,
+  Button as BootstrapButton,
+  Row,
+  Col,
+} from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useLoginMutation } from "../slices/usersApiSlice";
+import { setCredentials } from "../slices/authSlice";
+import { toast } from "react-toastify";
+import styled, { keyframes } from "styled-components";
+import { FaCog } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { AiFillApple } from "react-icons/ai";
+import { FaHelmetSafety } from "react-icons/fa6";
+import Loader from "../components/Loader";
+import FormContainer from "../components/FormContainer";
+import "../assets/styles.css";
 
 // Keyframes
 const rotate = keyframes`
@@ -51,7 +58,7 @@ const Circle1 = styled(Circle)`
 const Circle2 = styled(Circle)`
   top: 8%;
   right: 13%;
-  background-color: #C1E9E5;
+  background-color: #c1e9e5;
 `;
 
 const Circle3 = styled(Circle)`
@@ -62,7 +69,7 @@ const Circle3 = styled(Circle)`
 const Circle4 = styled(Circle)`
   bottom: 8%;
   right: 22%;
-  background-color: #C1E9E5;
+  background-color: #c1e9e5;
 `;
 
 const LoginBox = styled.div`
@@ -99,7 +106,7 @@ const LeftPanel = styled.div`
 const RotatingIcon = styled(FaCog)`
   font-size: 85px;
   animation: ${rotate} 70s linear infinite;
-  color: #D5EAE7;
+  color: #d5eae7;
 
   @media (max-width: 768px) {
     display: none;
@@ -110,7 +117,7 @@ const HelmetIcon = styled(FaHelmetSafety)`
   position: absolute;
   top: 25%;
   font-size: 90px;
-  color: #D5EAE7;
+  color: #d5eae7;
 
   @media (max-width: 768px) {
     display: none;
@@ -166,7 +173,7 @@ const IconButton = styled.button`
   align-items: center;
   justify-content: center;
   &:hover {
-    background-color: #D5EAE7;
+    background-color: #d5eae7;
   }
 `;
 
@@ -178,8 +185,8 @@ const Icon = styled.span`
 `;
 
 function LoginScreen() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -190,7 +197,7 @@ function LoginScreen() {
 
   const { search } = useLocation();
   const sp = new URLSearchParams(search);
-  const redirect = sp.get('redirect') || '/';
+  const redirect = sp.get("redirect") || "/home";
 
   useEffect(() => {
     if (userInfo) {
@@ -220,7 +227,10 @@ function LoginScreen() {
       <Circle4 />
       <LoginBox>
         <LeftPanel>
-          <Logo src={require('../assets/Kairotic_M_Logo.png')} alt="Kairotic M Logo" />
+          <Logo
+            src={require("../assets/Kairotic_M_Logo.png")}
+            alt="Kairotic M Logo"
+          />
           <RotatingIcon />
           <HelmetIcon />
         </LeftPanel>

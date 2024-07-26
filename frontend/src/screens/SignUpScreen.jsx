@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Form, Button as BootstrapButton, Row, Col } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { useRegisterMutation } from '../slices/usersApiSlice';
-import { setCredentials } from '../slices/authSlice';
-import { toast } from 'react-toastify';
-import styled, { keyframes } from 'styled-components';
-import { FaCog } from 'react-icons/fa';
-import { FaHelmetSafety } from 'react-icons/fa6';
-import Loader from '../components/Loader';
-import FormContainer from '../components/FormContainer';
-import '../assets/styles.css';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Form, Button as BootstrapButton, Row, Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useRegisterMutation } from "../slices/usersApiSlice";
+import { setCredentials } from "../slices/authSlice";
+import { toast } from "react-toastify";
+import styled, { keyframes } from "styled-components";
+import { FaCog } from "react-icons/fa";
+import { FaHelmetSafety } from "react-icons/fa6";
+import Loader from "../components/Loader";
+import FormContainer from "../components/FormContainer";
+import "../assets/styles.css";
 
 // Keyframes
 const rotate = keyframes`
@@ -49,7 +49,7 @@ const Circle1 = styled(Circle)`
 const Circle2 = styled(Circle)`
   top: 8%;
   right: 13%;
-  background-color: #C1E9E5;
+  background-color: #c1e9e5;
 `;
 
 const Circle3 = styled(Circle)`
@@ -60,7 +60,7 @@ const Circle3 = styled(Circle)`
 const Circle4 = styled(Circle)`
   bottom: 8%;
   right: 22%;
-  background-color: #C1E9E5;
+  background-color: #c1e9e5;
 `;
 
 const SignUpBox = styled.div`
@@ -95,7 +95,7 @@ const LeftPanel = styled.div`
 const RotatingIcon = styled(FaCog)`
   font-size: 85px;
   animation: ${rotate} 70s linear infinite;
-  color: #D5EAE7;
+  color: #d5eae7;
 
   @media (max-width: 768px) {
     display: none;
@@ -106,7 +106,7 @@ const HelmetIcon = styled(FaHelmetSafety)`
   position: absolute;
   top: 25%;
   font-size: 90px;
-  color: #D5EAE7;
+  color: #d5eae7;
 
   @media (max-width: 768px) {
     display: none;
@@ -142,11 +142,11 @@ const Title = styled.h1`
 `;
 
 export default function SignUpScreen() {
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -157,7 +157,7 @@ export default function SignUpScreen() {
 
   const { search } = useLocation();
   const sp = new URLSearchParams(search);
-  const redirect = sp.get('redirect') || '/';
+  const redirect = sp.get("redirect") || "/";
 
   useEffect(() => {
     if (userInfo) {
@@ -169,7 +169,7 @@ export default function SignUpScreen() {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
+      toast.error("Passwords do not match");
       return;
     } else {
       try {
@@ -192,7 +192,10 @@ export default function SignUpScreen() {
       <Circle4 />
       <SignUpBox>
         <LeftPanel>
-          <Logo src={require('../assets/Kairotic_M_Logo.png')} alt="Kairotic M Logo" />
+          <Logo
+            src={require("../assets/Kairotic_M_Logo.png")}
+            alt="Kairotic M Logo"
+          />
           <RotatingIcon />
           <HelmetIcon />
         </LeftPanel>
@@ -267,8 +270,8 @@ export default function SignUpScreen() {
             </Form>
             <Row className="py-3">
               <Col>
-                Already have an account?{' '}
-                <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
+                Already have an account?{" "}
+                <Link to={redirect ? `/?redirect=${redirect}` : "/"}>
                   Login
                 </Link>
               </Col>
