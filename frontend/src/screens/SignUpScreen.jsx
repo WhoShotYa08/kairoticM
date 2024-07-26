@@ -12,7 +12,6 @@ import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import '../assets/styles.css';
 
-// Keyframes
 const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -22,7 +21,6 @@ const rotate = keyframes`
   }
 `;
 
-// Styled Components
 const Container = styled.div`
   display: flex;
   min-height: 100vh;
