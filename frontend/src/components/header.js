@@ -17,7 +17,7 @@ export default function Header() {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
