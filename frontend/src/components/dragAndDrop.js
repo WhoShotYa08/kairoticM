@@ -17,8 +17,8 @@ function DragDrop() {
       types={fileTypes}
       onDrop={() => {}}
       children={
-        <div className="border">
-          <BsCloudUploadFill size={100} />
+        <div className="">
+          <BsCloudUploadFill size={100} color="black" className="mx-3"/>
           <div className="mx-auto overflow-none">
             <p>{!file ? "Drag your file here" : file.name}</p>
           </div>

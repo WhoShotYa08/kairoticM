@@ -1,392 +1,298 @@
-import React, { useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import "../assets/landing.css";
+import React, { useState, useEffect } from 'react';
+import styled, { keyframes, css } from 'styled-components';
+import { useInView } from 'react-intersection-observer';
+import ReactPlayer from 'react-player';
+
+// Animations
+const float = keyframes`
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+`;
+
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
+// Styled Components
+const AppContainer = styled.div`
+  background-color: white;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  overflow-x: hidden;
+`;
+
+const Header = styled.header`
+  background-color: #4E9E8B;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const Logo = styled.div`
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
+`;
+
+const LogoIcon = styled.img`
+  height: 30px;
+  margin-right: 10px;
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const NavLink = styled.a`
+  color: white;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+const HeroSection = styled.div`
+  position: relative;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  width: 100%; /* Ensure the section takes full width */
+
+  @media (max-width: 768px) {
+    height: 60vh;
+  }
+
+  @media (max-width: 480px) {
+    height: 50vh;
+  }
+`;
+
+const HeroOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+
+const HeroContent = styled.div`
+  z-index: 1;
+  padding: 1rem;
+`;
+
+const HeroTitle = styled.h1`
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: ${fadeIn} 2s ease-out;
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2rem;
+  }
+`;
+
+const HeroSubtitle = styled.p`
+  font-size: 1.5rem;
+  color: #C1E9E5;
+  animation: ${fadeIn} 2s ease-out 0.5s both;
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+  }
+`;
+
+const Button = styled.button`
+  background-color: #4E9E8B;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: all 0.3s ease;
+  animation: ${fadeIn} 2s ease-out 1s both;
+
+  &:hover {
+    background-color: #C1E9E5;
+    color: #4E9E8B;
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
+`;
+
+const FeaturesSection = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 6rem 2rem;
+  background-color: #f8f8f8;
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 1rem;
+  }
+
+  &.animate {
+    & > div {
+      opacity: 1;
+      transform: translateY(0);
+      animation: ${fadeIn} 3s forwards;
+    }
+  }
+`;
+
+const FeatureCard = styled.div`
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  width: 300px;
+  margin: 0 1rem;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 1rem 0;
+  }
+`;
+
+const FeatureIcon = styled.img`
+  width: 100px;
+  height: 100px;
+  margin-bottom: 1.5rem;
+  object-fit: cover;
+  border-radius: 50%;
+`;
+
+const FeatureTitle = styled.h3`
+  color: #4E9E8B;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+`;
+
+const FeatureDescription = styled.p`
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.5;
+`;
 
 const LandingScreen = () => {
+  const [progress, setProgress] = useState(0);
+  const { ref: heroRef } = useInView({
+    triggerOnce: true,
+    threshold: 0.3, // Adjusted threshold to control when the animation triggers
+  });
+  const { ref: featuresRef, inView: featuresInView } = useInView({
+    triggerOnce: false,
+    threshold: 0.3, // Adjusted threshold to control when the animation triggers
+  });
+
   useEffect(() => {
-    AOS.init({
-      duration: 2000,
-    });
+    const timer = setInterval(() => {
+      setProgress((oldProgress) => (oldProgress >= 100 ? 0 : oldProgress + 1));
+    }, 100);
+
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   return (
-    <div data-spy="scroll" data-target=".navbar" data-offset="50">
-      <div id="Benvenuti">
-        {/* Start navigation Bar */}
-        <nav className="navbar navbar-expand-lg navbar fixed-top navbar-light bg-light">
-          <a className="navbar-brand" href="#Benvenuti">
-            <img
-              src="/images2/logo.png"
-              width="50"
-              height="50"
-              className="d-inline-block"
-              alt=""
-            />{" "}
-            Italian Restaurant
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarText"
-            aria-controls="navbarText"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarText">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <a className="nav-link" href="#Benvenuti">
-                  Benvenuti
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#Ristorante">
-                  Ristorante
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#Menu">
-                  Menu
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#Prenotazione">
-                  Prenotazione
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#DoveSiamo">
-                  Dove Siamo
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="../index.html" className="language" rel="en-En">
-                  <img
-                    src="images/english.ico"
-                    className="flag"
-                    alt="English"
-                  />
-                </a>
-                <a href="index.html" className="language" rel="it-IT">
-                  <img src="images2/italy.ico" className="flag" alt="Italiano" />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-        {/* End Navigation Bar */}
-        {/* Start Carousel */}
-        <div
-          id="carouselExampleIndicators"
-          className="carousel slide"
-          data-ride="carousel"
-        >
-          <ol className="carousel-indicators">
-            <li
-              data-target="#carouselExampleIndicators"
-              data-slide-to="0"
-              className="active"
-            ></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img
-                className="d-block w-100 img-fluid img-slider"
-                src="/images2/slider1.jpg"
-                alt="First slide"
-              />
-              <div className="carousel-caption">
-                <h2>Benvenuti!</h2>
-                <p>...</p>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <img
-                className="d-block w-100 img-fluid img-slider"
-                src="/images2/slider2.jpg"
-                alt="Second slide"
-              />
-              <div className="carousel-caption">
-                <h2>Cucina Tradizionale Italiana</h2>
-                <p>...</p>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <img
-                className="d-block w-100 img-fluid img-slider"
-                src="images2/slider3.jpg"
-                alt="Third slide"
-              />
-              <div className="carousel-caption">
-                <h2>Prodotti Selezionati</h2>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-          <a
-            className="carousel-control-prev"
-            href="#carouselExampleIndicators"
-            role="button"
-            data-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="sr-only">Previous</span>
-          </a>
-          <a
-            className="carousel-control-next"
-            href="#carouselExampleIndicators"
-            role="button"
-            data-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
-      {/* End of Carousel */}
-      {/* Ristorante */}
-      <div className="container">
-        <div className="row" id="Ristorante">
-          <div className="col navMenu">
-            <h2 className="text-center">~ Ristorante ~</h2>
-          </div>
-        </div>
-        <div className="row bg-light">
-          <div className="col-md-6">
-            <h3>Location</h3>
-            <p>
-              Grazie per esserti fermato. Siamo l'ultimo autentico ristorante
-              italiano a Milano, che serve deliziosi piatti della cucina
-              italiana cucinati dai migliori chef. Ti bastano pochi minuti per
-              navigare attraverso il nostro sito Web e controllare il nostro
-              menu. Speriamo che ti unirai presto a noi per una superba
-              esperienza culinaria italiana.
-            </p>
-            <h5>Un'esperienza unica</h5>
-            <p>
-              Grazie per esserti fermato. Siamo l'ultimo autentico ristorante
-              italiano a Milano, che serve deliziosi piatti della cucina
-              italiana cucinati dai migliori chef. Ti bastano pochi minuti per
-              navigare attraverso il nostro sito Web e controllare il nostro
-              menu. Speriamo che ti unirai presto a noi per una superba
-              esperienza culinaria italiana.
-            </p>
-          </div>
-          <div className="col-md-6" data-aos="fade-up">
-            <img
-              className="img-fluid"
-              src="images2/location.jpg"
-              alt="Location"
-            />
-          </div>
-        </div>
-        <div className="row bg-light">
-          <br />
-        </div>
-        <div className="row bg-light">
-          <div className="col-md-6 order-md-1 order-2" data-aos="fade-up">
-            <img className="img-fluid" src="images2/cucina.jpg" alt="Cucina" />
-          </div>
-          <div className="col-md-6 order-md-12 order-1">
-            <h3>Cucina</h3>
-            <p>
-              Grazie per esserti fermato. Siamo l'ultimo autentico ristorante
-              italiano a Milano, che serve deliziosi piatti della cucina
-              italiana cucinati dai migliori chef. Ti bastano pochi minuti per
-              navigare attraverso il nostro sito Web e controllare il nostro
-              menu. Speriamo che ti unirai presto a noi per una superba
-              esperienza culinaria italiana.
-            </p>
-            <h5>Un'esperienza unica</h5>
-            <p>
-              Grazie per esserti fermato. Siamo l'ultimo autentico ristorante
-              italiano a Milano, che serve deliziosi piatti della cucina
-              italiana cucinati dai migliori chef. Ti bastano pochi minuti per
-              navigare attraverso il nostro sito Web e controllare il nostro
-              menu. Speriamo che ti unirai presto a noi per una superba
-              esperienza culinaria italiana.
-            </p>
-          </div>
-        </div>
-        {/* End of Ristorante */}
-        {/* Start of Menu */}
-        <div className="row" id="Menu">
-          <div className="col navMenu">
-            <h2 className="text-center">~ Menu ~</h2>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-4" data-aos="slide-up">
-            <div className="card view zoom">
-              <img
-                className="card-img-top img-fluid"
-                src="images2/menu-carne.jpg"
-                alt="Menu di Carne"
-              />
-              <div className="card-body">
-                <h5 className="card-title">~ Menu di Carne ~</h5>
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item">
-                    Bocconcini di carne in nido di sfoglia
-                  </li>
-                  <li className="list-group-item">
-                    Bruschette con maiale al curry
-                  </li>
-                  <li className="list-group-item">Uova al prosciutto</li>
-                  <li className="list-group-item">Vitello tonnato</li>
-                  <li className="list-group-item">
-                    Fesa di tacchino marinata con olive
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4" data-aos="slide-up">
-            <div className="card">
-              <img
-                className="card-img-top img-fluid"
-                src="images2/menu-pesce.jpg"
-                alt="Menu di Pesce"
-              />
-              <div className="card-body">
-                <h5 className="card-title">~ Menu di Pesce ~</h5>
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item">Carpaccio di polpo</li>
-                  <li className="list-group-item">Impepata di cozze</li>
-                  <li className="list-group-item">Insalata di mare</li>
-                  <li className="list-group-item">Sautè di cozze</li>
-                  <li className="list-group-item">Zuppa di pesce</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4" data-aos="slide-up">
-            <div className="card">
-              <img
-                className="card-img-top img-fluid"
-                src="images2/menu-vegano.jpg"
-                alt="Menu Vegano"
-              />
-              <div className="card-body">
-                <h5 className="card-title">~ Menu Vegano ~</h5>
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item">Tofu impanato</li>
-                  <li className="list-group-item">Uova alla contadina</li>
-                  <li className="list-group-item">
-                    Fusilli alla carbonara vegana
-                  </li>
-                  <li className="list-group-item">
-                    Farfalle integrali con piselli
-                  </li>
-                  <li className="list-group-item">Penne al pomodoro fresco</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* End of Menu */}
-        {/* Start of Prenotazione */}
-        <div className="row" id="Prenotazione">
-          <div className="col navMenu">
-            <h2 className="text-center">~ Prenotazione ~</h2>
-          </div>
-        </div>
-        <div className="row bg-light">
-          <div className="col-md-6">
-            <h3>Location</h3>
-            <p>
-              Grazie per esserti fermato. Siamo l'ultimo autentico ristorante
-              italiano a Milano, che serve deliziosi piatti della cucina
-              italiana cucinati dai migliori chef. Ti bastano pochi minuti per
-              navigare attraverso il nostro sito Web e controllare il nostro
-              menu. Speriamo che ti unirai presto a noi per una superba
-              esperienza culinaria italiana.
-            </p>
-            <h5>Un'esperienza unica</h5>
-            <p>
-              Grazie per esserti fermato. Siamo l'ultimo autentico ristorante
-              italiano a Milano, che serve deliziosi piatti della cucina
-              italiana cucinati dai migliori chef. Ti bastano pochi minuti per
-              navigare attraverso il nostro sito Web e controllare il nostro
-              menu. Speriamo che ti unirai presto a noi per una superba
-              esperienza culinaria italiana.
-            </p>
-          </div>
-          <div className="col-md-6" data-aos="fade-up">
-            <img
-              className="img-fluid"
-              src="images2/location.jpg"
-              alt="Location"
-            />
-          </div>
-        </div>
-        <div className="row bg-light">
-          <br />
-        </div>
-        <div className="row bg-light">
-          <div className="col-md-6 order-md-1 order-2" data-aos="fade-up">
-            <img className="img-fluid" src="images2/cucina.jpg" alt="Cucina" />
-          </div>
-          <div className="col-md-6 order-md-12 order-1">
-            <h3>Cucina</h3>
-            <p>
-              Grazie per esserti fermato. Siamo l'ultimo autentico ristorante
-              italiano a Milano, che serve deliziosi piatti della cucina
-              italiana cucinati dai migliori chef. Ti bastano pochi minuti per
-              navigare attraverso il nostro sito Web e controllare il nostro
-              menu. Speriamo che ti unirai presto a noi per una superba
-              esperienza culinaria italiana.
-            </p>
-            <h5>Un'esperienza unica</h5>
-            <p>
-              Grazie per esserti fermato. Siamo l'ultimo autentico ristorante
-              italiano a Milano, che serve deliziosi piatti della cucina
-              italiana cucinati dai migliori chef. Ti bastano pochi minuti per
-              navigare attraverso il nostro sito Web e controllare il nostro
-              menu. Speriamo che ti unirai presto a noi per una superba
-              esperienza culinaria italiana.
-            </p>
-          </div>
-        </div>
-        {/* End of Prenotazione */}
-        {/* Start of Dove Siamo */}
-        <div className="row" id="DoveSiamo">
-          <div className="col navMenu">
-            <h2 className="text-center">~ Dove Siamo ~</h2>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col">
-            <div className="mapouter">
-              <div className="gmap_canvas">
-                <iframe
-                  title="gmap"
-                  className="gmap_iframe"
-                  frameBorder="0"
-                  scrolling="no"
-                  marginHeight="0"
-                  marginWidth="0"
-                  src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=milano&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-                ></iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <AppContainer>
+
+      <HeroSection ref={heroRef}>
+        <ReactPlayer
+          url='https://www.youtube.com/watch?v=yN7zQvAv8d8'
+          playing
+          loop
+          muted
+          width='100%'
+          height='100%'
+          style={{ position: 'absolute', top: 0, left: 0 }}
+        />
+        <HeroOverlay />
+        <HeroContent>
+          <HeroTitle>Streamline Your Construction Process</HeroTitle>
+          <HeroSubtitle>Track Progress, Manage Designs, Collaborate Effortlessly</HeroSubtitle>
+          <Button>Get Started</Button>
+        </HeroContent>
+      </HeroSection>
+      <FeaturesSection ref={featuresRef} className={featuresInView ? 'animate' : ''}>
+        <FeatureCard>
+          <FeatureIcon src={require('../assets/progress.jpg')} alt="Progress Tracking" />
+          <FeatureTitle>Progress Tracking</FeatureTitle>
+          <FeatureDescription>Real-time updates on your projects with interactive dashboards and timelines.</FeatureDescription>
+        </FeatureCard>
+        <FeatureCard>
+          <FeatureIcon src={require('../assets/OIP.jpeg')} alt="Design Upload" />
+          <FeatureTitle>Design Upload & Authorization</FeatureTitle>
+          <FeatureDescription>Seamless design management with secure file sharing and approval workflows.</FeatureDescription>
+        </FeatureCard>
+        <FeatureCard>
+          <FeatureIcon src={require('../assets/compliance.jpg')} alt="Spec Compliance" />
+          <FeatureTitle>Spec Compliance Checks</FeatureTitle>
+          <FeatureDescription>Automated checks to ensure designs meet all required specifications and standards.</FeatureDescription>
+        </FeatureCard>
+      </FeaturesSection>
+      {/* <ProgressBarContainer>
+        <h3>Project Completion</h3>
+        <ProgressBar>
+          <ProgressFill style={{ width: `${progress}%` }} />
+        </ProgressBar>
+      </ProgressBarContainer> */}
+    </AppContainer>
   );
 };
 
