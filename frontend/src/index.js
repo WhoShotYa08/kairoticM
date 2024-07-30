@@ -15,6 +15,7 @@ import "./assets/animations.css";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import PrivateRoute from "./components/PrivateRoute";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import LandingPage from "./screens/LandingScreen";
@@ -26,6 +27,12 @@ const router = createBrowserRouter(
       <Route index={true} path="/login" element={<LoginScreen />} />
       <Route  path="/home" element={<HomeScreen />} />
       <Route path="/register" element={<SignUpScreen />} />
+
+
+      {/* For all screens that need authentification */}
+      <Route path="" element={ <PrivateRoute />}>
+        <Route path="/home" element={ <HomeScreen />} />
+      </Route>
     </Route>
   )
 );
