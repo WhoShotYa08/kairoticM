@@ -59,7 +59,7 @@ export default function FileUploadScreen() {
       <h4 className="text-success">Uploading Document</h4>
       <form>
         <div
-          className="w-100 container border border-3 border-dark-subtle d-flex flex-column align-items-center"
+          className="w-100 container border-3 border-dark-subtle d-flex flex-column align-items-center"
           style={{ borderStyle: "dashed" }}
         >
           {/* Drag and drop */}

@@ -24,7 +24,7 @@ import SignUpScreen from "./screens/SignUpScreen";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index={true} path="/login" element={<LoginScreen />} />
+      <Route index={true} path="/" element={<LoginScreen />} />
       <Route  path="/home" element={<HomeScreen />} />
       <Route path="/register" element={<SignUpScreen />} />
 
