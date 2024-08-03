@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
-import '../index.css';
+import '../assets/dashboard/css/ready.css';
+import '../assets/dashboard/css/demo.css';
 
 export default function AuthorizeDrawingScreen() {
   return (

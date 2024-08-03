@@ -19,12 +19,14 @@ import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import LandingPage from "./screens/LandingScreen";
 import SignUpScreen from "./screens/SignUpScreen";
+import Dashboard from "./screens/Dashboard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<LoginScreen />} />
-      <Route  path="/home" element={<HomeScreen />} />
+      <Route path="/home" element={<Dashboard />} />
+      {/* <Route  path="/home" element={<HomeScreen />} /> */}
       <Route path="/register" element={<SignUpScreen />} />
     </Route>
   )
