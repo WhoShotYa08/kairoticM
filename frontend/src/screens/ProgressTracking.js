@@ -37,8 +37,7 @@ const usersAuthorized = [
 
 export default function ProgressTracking() {
   return (
-    <Container>
-      <div className="containerOne overflow-x-auto table-bordered ">
+      <div className="containerOne table-bordered">
         <h4 className="text-success">Process Tracking</h4>
         <table class="table table-light table-hover table-striped table-responsive ">
           <thead>
@@ -60,6 +59,5 @@ export default function ProgressTracking() {
           </tbody>
         </table>
       </div>
-    </Container>
   );
 }

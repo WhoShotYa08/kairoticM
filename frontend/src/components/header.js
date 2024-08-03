@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
+import { PopupMenu } from "react-simple-widgets";
 
 export default function Header() {
   const { userInfo } = useSelector((state) => state.auth);
@@ -24,54 +25,120 @@ export default function Header() {
   };
 
   return (
-    <header>
-      <Navbar expand="md" collapseOnSelect>
-        <Container>
-          <LinkContainer to="/">
-            <Navbar.Brand>
-              <img
-                src="/images/logo.png"
-                alt="KairoticM's Logo"
-                className="nav-logo"
-              />
-            </Navbar.Brand>
-          </LinkContainer>
+    <div id="app" data-bs-auto-close="true">
+      {
+        userInfo ? (
+        <div className="text-end">
+          <PopupMenu>
+            <button className="btn btn-primary">
+              <small>Profile</small>
+            </button>
 
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mx-auto"></Nav>
-            {userInfo ? (
-              <NavDropdown title={userInfo.name} id="username">
-                <LinkContainer to={"/profile"}>
-                  <NavDropdown.Item>Profile</NavDropdown.Item>
-                </LinkContainer>
+            <div className="card text-start">
+              <div className="card-body px-4 py-4">
+                <div id="circle-avatar" className="text-center mx-auto mb-4">
+                  <span>{userInfo.name[0]}</span>
+                </div>
 
-                <NavDropdown.Item onClick={logoutHandler}>
-                  Logout
-                </NavDropdown.Item>
-              </NavDropdown>
-            ) : (
-              <Nav>
-                {/* <LinkContainer to="/home">
-                  <Nav.Link className="btn btn-width btn-login">
-                    <span className="btn-login-content">Home</span>
-                  </Nav.Link>
-                </LinkContainer> */}
+                <h5 className="text-center mb-0">{userInfo.name}</h5>
+                <p className="text-center mb-0">{userInfo.email}</p>
 
-                <LinkContainer to="/register">
-                  <Nav.Link className="btn btn-width">Sign Up</Nav.Link>
-                </LinkContainer>
+                <hr />
 
-                <LinkContainer to="/login">
-                  <Nav.Link className="btn btn-width btn-login">
-                    <span className="btn-login-content">Login</span>
-                  </Nav.Link>
-                </LinkContainer>
-              </Nav>
-            )}
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </header>
+                <p
+                  className="mb-0"
+                  style={{
+                    color: "#bebebe",
+                    fontWeight: "bold",
+                    fontSize: 12,
+                  }}
+                >
+                  ROLES
+                </p>
+                <p style={{ fontSize: 12 }}>
+                  {[
+                    "Submitter",
+                    "Project manager",
+                  ].join(", ")}
+                </p>
+
+                <hr className="mb-0" style={{ margin: "0 -24px 0" }} />
+
+                <div
+                  className="list-group list-group-flush"
+                  style={{ margin: "0 -24px 0" }}
+                >
+                  <button className="list-group-item list-group-item-action px-4">
+                    <small>Other Requests</small>
+                  </button>
+                </div>
+
+                <hr style={{ margin: "0 -24px 24px" }} />
+
+                <div className="d-grid">
+                  <button className="btn btn-secondary" onClick={logoutHandler}>
+                    <small>Logout</small>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </PopupMenu>
+        </div>
+        ): (
+          <PopupMenu>
+          <button className="btn btn-primary">
+            <small>Profile</small>
+          </button>
+
+          <div className="card text-start">
+            <div className="card-body px-4 py-4">
+              <div id="circle-avatar" className="text-center mx-auto mb-4">
+                <span>K</span>
+              </div>
+
+              <h5 className="text-center mb-0">Name</h5>
+              <p className="text-center mb-2">Surname</p>
+
+              <hr />
+
+              <p
+                className="mb-0"
+                style={{
+                  color: "#bebebe",
+                  fontWeight: "bold",
+                  fontSize: 12,
+                }}
+              >
+                ROLES
+              </p>
+              <p style={{ fontSize: 12 }}>
+                {[
+                  "Submitter",
+                  "Project manager",
+                  "Change control board",
+                ].join(", ")}
+              </p>
+
+              <hr className="mb-0" style={{ margin: "0 -24px 0" }} />
+
+              <div
+                className="list-group list-group-flush"
+                style={{ margin: "0 -24px 0" }}
+              >
+              </div>
+
+              <hr style={{ margin: "0 -24px 24px" }} />
+
+              <div className="d-grid">
+                <button className="btn btn-secondary" onClick={logoutHandler}>
+                  <small>Logout</small>
+                </button>
+              </div>
+            </div>
+          </div>
+        </PopupMenu>
+        )
+      }
+    </div>
   );
 }
