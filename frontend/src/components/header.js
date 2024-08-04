@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
 import { PopupMenu } from "react-simple-widgets";
+import { IoPersonCircle } from "react-icons/io5";
 
 export default function Header() {
   const { userInfo } = useSelector((state) => state.auth);
@@ -26,12 +27,11 @@ export default function Header() {
 
   return (
     <div id="app" data-bs-auto-close="true">
-      {
-        userInfo ? (
+      {userInfo ? (
         <div className="text-end">
           <PopupMenu>
-            <button className="btn btn-primary">
-              <small>Profile</small>
+            <button type="button" className="btn btn-link"  >
+              <IoPersonCircle size={20} color="grey" />
             </button>
 
             <div className="card text-start">
@@ -56,10 +56,7 @@ export default function Header() {
                   ROLES
                 </p>
                 <p style={{ fontSize: 12 }}>
-                  {[
-                    "Submitter",
-                    "Project manager",
-                  ].join(", ")}
+                  {["Submitter", "Project manager"].join(", ")}
                 </p>
 
                 <hr className="mb-0" style={{ margin: "0 -24px 0" }} />
@@ -84,8 +81,8 @@ export default function Header() {
             </div>
           </PopupMenu>
         </div>
-        ): (
-          <PopupMenu>
+      ) : (
+        <PopupMenu>
           <button className="btn btn-primary">
             <small>Profile</small>
           </button>
@@ -112,11 +109,9 @@ export default function Header() {
                 ROLES
               </p>
               <p style={{ fontSize: 12 }}>
-                {[
-                  "Submitter",
-                  "Project manager",
-                  "Change control board",
-                ].join(", ")}
+                {["Submitter", "Project manager", "Change control board"].join(
+                  ", "
+                )}
               </p>
 
               <hr className="mb-0" style={{ margin: "0 -24px 0" }} />
@@ -124,8 +119,7 @@ export default function Header() {
               <div
                 className="list-group list-group-flush"
                 style={{ margin: "0 -24px 0" }}
-              >
-              </div>
+              ></div>
 
               <hr style={{ margin: "0 -24px 24px" }} />
 
@@ -137,8 +131,7 @@ export default function Header() {
             </div>
           </div>
         </PopupMenu>
-        )
-      }
+      )}
     </div>
   );
 }

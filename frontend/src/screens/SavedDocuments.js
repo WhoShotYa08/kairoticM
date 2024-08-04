@@ -43,9 +43,9 @@ const docData = [
 
 export default function SavedDocumentsScreen() {
   return (
-    <div className="containerOne w-100 border">
+    <div className="containerOne w-100 border h-100 table-responsive">
       <h4 className="text-success">Saved Documents</h4>
-      <table className="container-sm table table-striped table-hover table-responsive ">
+      <table className="container-sm table table-striped table-hover  ">
         <thead>
           <tr className="bg-light">
             <th scope="col">Document ID</th>
