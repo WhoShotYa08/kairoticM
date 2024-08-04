@@ -46,3 +46,25 @@ input::placeholder {
   font-size: 0.9rem;
   color: #999;
 }
+
+.custom-dropdown-menu {
+  width: 300px; /* Adjust the width as needed */
+}
+
+.custom-dropdown-menu .dropdown-item {
+  white-space: normal; /* Allow text to wrap */
+}
+
+.custom-dropdown-menu .dropdown-item img {
+  max-width: 50px;
+  height: auto;
+}
+
+.custom-dropdown-menu .dropdown-item .content {
+  flex: 1;
+  min-width: 0; /* Allow flex items to shrink properly */
+}
+
+.custom-dropdown-menu .dropdown-item .content p {
+  margin-bottom: 0.5rem;
+}

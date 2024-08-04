@@ -5,7 +5,7 @@ import '../assets/dashboard/css/demo.css';
 
 export default function AuthorizeDrawingScreen() {
   return (
-    <div className="containerOne">
+    <div className="containerOne h-100">
       <h1 className="text-primary">Authorize Signee's</h1>
       <Form>
         <div className="dropdown-row">

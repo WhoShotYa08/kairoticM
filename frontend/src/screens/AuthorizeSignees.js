@@ -80,7 +80,7 @@ export default function AuthorizeSigneesScreen() {
 
   return (
     <Container style={{ flex: '1' }}>
-      <div className="containerOne">
+      <div className="containerOne h-100">
         <h1 className="text-primary">Authorize Signee's</h1>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0' }}>
           <div style={{ display: 'flex', gap: '10px' }}>

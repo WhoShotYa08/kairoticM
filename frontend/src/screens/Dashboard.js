@@ -9,26 +9,20 @@ import AuthorizeDrawingScreen from "./AuthorizeDrawings";
 import AuthorizeSigneesScreen from "./AuthorizeSignees";
 import ProgressTracking from "./ProgressTracking";
 import SavedDocumentsScreen from "./SavedDocuments";
-// import { FaClipboard } from "react-icons/fa";
 import { MdPeople } from "react-icons/md";
 import { FaCalendarDay } from "react-icons/fa";
 import { FaFileSignature } from "react-icons/fa6";
 import { IoCloudUpload } from "react-icons/io5";
 import { IoIosSave } from "react-icons/io";
-import { PopupMenu } from "react-simple-widgets";
 import "../assets/dashboard/sass/styles.scss";
 import Header from "../components/Header";
-// import Notifications from "../components/Nofications";
 import DropdownMenu from "../components/Nofications";
-import { CgProfile } from "react-icons/cg";
-
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 const Dashboard = () => {
   const [screen, setScreen] = useState("upload");
 
-
   useEffect(() => {
-
     $(".scrollbar-inner").scrollbar();
 
     let toggle_sidebar = false,
@@ -84,7 +78,11 @@ const Dashboard = () => {
     <div className="wrapper">
       <div className="main-header">
         <div className="logo-header">
-          <img src="/src/assets/Kairotic_M_Logo.png" alt="Kairotic M Logo" />
+          <img
+            src="https://kairoticm.co.za/wp-content/uploads/elementor/thumbs/cropped-Kairotic-M_WebGFX_Logo-PNG-ooatoppce6u5h8jkm8v2wt591xpwnvsp2s5x4yzhw2.png"
+            alt="Kairotic M Logo"
+            width={240}
+          />
           {/* frontend\src\assets\Kairotic_M_Logo.png */}
           <button
             className="navbar-toggler sidenav-toggler ml-auto"
@@ -98,7 +96,7 @@ const Dashboard = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <button className="topbar-toggler more">
-          <CgProfile />
+            <BsThreeDotsVertical />
           </button>
         </div>
         <nav className="navbar navbar-header navbar-expand-lg z-0">
@@ -110,15 +108,13 @@ const Dashboard = () => {
           </div>
         </nav>
       </div>
-    <div className="sidebar">
+      <div className="sidebar">
         <div className="scrollbar-inner sidebar-wrapper">
           <div className="user">
             <div className="photo">
-              <img src="../assets/dashboard/css/img/profile.jpg" />
+              {/* <img src="../assets/dashboard/css/img/profile.jpg" /> */}
             </div>
-            <div className="info">
-              
-            </div>
+            <div className="info py-3"></div>
           </div>
           <ul className="nav">
             <li className={`nav-item ${screen === "upload" ? "active" : ""}`}>
@@ -129,7 +125,7 @@ const Dashboard = () => {
                   color={getIconColor("upload")}
                 />
                 <p>Upload</p>
-                <span className="badge badge-count">5</span>
+                {/* <span className="badge badge-count">5</span> */}
               </a>
             </li>
             <li className={`nav-item ${screen === "saved" ? "active" : ""}`}>
@@ -140,7 +136,7 @@ const Dashboard = () => {
                   color={getIconColor("saved")}
                 />
                 <p>Saved</p>
-                <span className="badge badge-count">14</span>
+                {/* <span className="badge badge-count">14</span> */}
               </a>
             </li>
             <li className={`nav-item ${screen === "signee" ? "active" : ""}`}>
@@ -151,7 +147,7 @@ const Dashboard = () => {
                   color={getIconColor("signee")}
                 />
                 <p>Authorize Signees</p>
-                <span className="badge badge-count">50</span>
+                {/* <span className="badge badge-count">50</span> */}
               </a>
             </li>
             <li className={`nav-item ${screen === "drawing" ? "active" : ""}`}>
@@ -162,7 +158,7 @@ const Dashboard = () => {
                   color={getIconColor("drawing")}
                 />
                 <p>Authorize Drawings</p>
-                <span className="badge badge-count">6</span>
+                {/* <span className="badge badge-count">6</span> */}
               </a>
             </li>
             <li className={`nav-item ${screen === "progress" ? "active" : ""}`}>
@@ -173,14 +169,17 @@ const Dashboard = () => {
                   color={getIconColor("progress")}
                 />
                 <p>Progress Tracking</p>
-                <span className="badge badge-success">3</span>
+                {/* <span className="badge badge-success">3</span> */}
               </a>
             </li>
           </ul>
         </div>
       </div>
-      <div className="main-panel" style={{zIndex: -5}}>
-        <div className="content">
+      <div
+        className="main-panel"
+        style={{ height: "100%", display: 'block'}}
+      >
+        <div className="content" style={{display: 'block'}}>
           {screen === "upload" ? (
             <FileUploadScreen />
           ) : screen === "saved" ? (
@@ -200,28 +199,14 @@ const Dashboard = () => {
               <ul className="nav">
                 <li className="nav-item">
                   <a className="nav-link" href="http://www.themekita.com">
-                    ThemeKita
+                    Kairotic M
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Help
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    href="https://themewagon.com/license/#free-item"
-                  >
-                    Licenses
-                  </a>
-                </li>
+                <li className="nav-item"></li>
+                <li className="nav-item"></li>
               </ul>
             </nav>
-            <div className="copyright ml-auto">
-              2018, made with <i className="la la-heart heart text-danger"></i>{" "}
-              by <a href="http://www.themekita.com">ThemeKita</a>
-            </div>
+            <div className="copyright ml-auto">Made with React.js -- 2024</div>
           </div>
         </footer>
       </div>

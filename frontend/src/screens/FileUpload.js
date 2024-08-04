@@ -55,7 +55,7 @@ export default function FileUploadScreen() {
   // };
 
   return (
-    <div className="containerOne">
+    <div className="containerOne w-100 h-100">
       <h4 className="text-success">Uploading Document</h4>
       <form>
         <div
