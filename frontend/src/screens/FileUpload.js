@@ -55,7 +55,7 @@ export default function FileUploadScreen() {
   // };
 
   return (
-    <div className="containerOne">
+    <div className="containerOne" style={{ backgroundColor: "#f0f0f0" }}>
       <h4 className="text-success">Uploading Document</h4>
       <form>
         <div

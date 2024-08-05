@@ -7,7 +7,7 @@ export default function AuthorizeDrawingScreen() {
   return (
     <Container fluid className="py-4 px-4 bg-light min-vh-100">
       <div className="bg-white rounded-lg shadow-sm p-4">
-        <h1 className="text-primary mb-4 fw-bold" style={{fontSize: '20px'}}>Authorize Signees</h1>
+        <h1 className="text-primary mb-4 fw-bold" style={{fontSize: '20px'}}>Authorize Drawings</h1>
         <Form>
           <Row className="mb-4">
             <Col md={6} className="mb-3 mb-md-0">
