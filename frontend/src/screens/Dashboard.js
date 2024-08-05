@@ -17,7 +17,7 @@ import { IoCloudUpload } from "react-icons/io5";
 import { IoIosSave } from "react-icons/io";
 import { PopupMenu } from "react-simple-widgets";
 import "../assets/dashboard/sass/styles.scss";
-import Header from "../components/Header";
+import Header from "../components/header";
 // import Notifications from "../components/Nofications";
 import DropdownMenu from "../components/Nofications";
 import { CgProfile } from "react-icons/cg";
@@ -179,7 +179,7 @@ const Dashboard = () => {
           </ul>
         </div>
       </div>
-      <div className="main-panel" style={{zIndex: -5}}>
+      <div className="main-panel" style={{zIndex: 0}}>
         <div className="content">
           {screen === "upload" ? (
             <FileUploadScreen />
