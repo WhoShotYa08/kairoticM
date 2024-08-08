@@ -9,6 +9,7 @@ import AuthorizeDrawingScreen from "./AuthorizeDrawings";
 import AuthorizeSigneesScreen from "./AuthorizeSignees";
 import ProgressTracking from "./ProgressTracking";
 import SavedDocumentsScreen from "./SavedDocuments";
+import UserAnalytics from "./UserAnalytics";
 import { MdPeople } from "react-icons/md";
 import { FaCalendarDay } from "react-icons/fa";
 import { FaFileSignature } from "react-icons/fa6";
@@ -117,6 +118,16 @@ const Dashboard = () => {
             <div className="info py-3"></div>
           </div>
           <ul className="nav">
+            <li className={`nav-item ${screen === "useranalytics" ? "active" : ""}`}>
+              <a onClick={() => setScreen("useranalytics")}>
+                <MdPeople
+                  size={20}
+                  className="mx-2"
+                  color={getIconColor("useranalytics")}
+                />
+                <p>User Analytics</p>
+              </a>
+            </li>
             <li className={`nav-item ${screen === "upload" ? "active" : ""}`}>
               <a onClick={() => setScreen("upload")}>
                 <IoCloudUpload
@@ -179,7 +190,7 @@ const Dashboard = () => {
         className="main-panel"
         style={{ height: "100%", display: 'block'}}
       >
-        <div className="content" style={{display: 'block'}}>
+        <div className="content" style={{ display: 'block' }}>
           {screen === "upload" ? (
             <FileUploadScreen />
           ) : screen === "saved" ? (
@@ -188,6 +199,8 @@ const Dashboard = () => {
             <AuthorizeSigneesScreen />
           ) : screen === "drawing" ? (
             <AuthorizeDrawingScreen />
+          ) : screen === "useranalytics" ? (
+            <UserAnalytics />
           ) : (
             <ProgressTracking />
           )}
