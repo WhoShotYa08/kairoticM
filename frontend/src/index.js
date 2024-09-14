@@ -22,6 +22,10 @@ import LandingPage from "./screens/LandingScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import Dashboard from "./screens/Dashboard";
 
+export const config = {
+  API_BASE_URL: process.env.REACT_APP_API_BASE_URL,
+}
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>

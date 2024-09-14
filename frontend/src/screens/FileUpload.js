@@ -1,100 +1,99 @@
 import React, { useState } from "react";
-import { FaFolderOpen } from "react-icons/fa6";
-import "../assets/fileUpload.css";
-import DragDrop from "../components/dragAndDrop";
-// import axios from "axios";
+import axios from "axios";
 
-export default function FileUploadScreen() {
-  // const [iconUrl, setIconUrl] = useState(null);
-  // const [file, setFile] = useState({});
+const FileUploadScreen = () => {
   const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [downloadLink, setDownloadLink] = useState("");
 
-  // const upload = () => {
-  //   const formData = new FormData();
-  //   formData.append('file', file);
-  //   axios.post("http://localhost:3000/upload", formData)
-  //     .then(res => {}, console.log("done"))
-  //     .catch(er => console.log(er))
-  // }
+  const allowedTypes = [
+    "image/jpeg",
+    "image/png",
+    "application/pdf",
+    "video/mp4",
+    "video/quicktime",
+    "audio/mpeg",
+    "audio/wav",
+    "application/acad",
+    "image/vnd.dwg",
+    "image/vnd.dxf",
+    "application/vnd.ms-pki.stl",
+    "model/stl",
+    "model/iges",
+    "application/iges",
+    "application/step",
+    "application/x-step",
+  ];
 
-  // const handleFileUpload = (e) => {
-  //   const file = e.target.files[0];
-  //   const reader = new FileReader();
+  const allowedExtensions = [
+    ".jpeg", ".jpg", ".png", ".pdf", ".mp4", ".mov", ".mpeg", ".wav",
+    ".dwg", ".dxf", ".stl", ".iges", ".igs", ".step", ".stp",
+  ];
 
-  //   reader.onload = () => {
-  //     setIconUrl(reader.result);
-  //   };
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    if (!selectedFile) return;
 
-  //   reader.readAsDataURL(file);
-  // };
+    const fileExtension = selectedFile.name.split('.').pop().toLowerCase();
+    const fileType = selectedFile.type;
 
-  const handleUpload = (event) => {
-    setFile(event.target.files[0]);
-    console.log(file);
+    const isAllowedType = allowedTypes.includes(fileType);
+    const isAllowedExtension = allowedExtensions.includes(`.${fileExtension}`);
+
+    if (isAllowedType || isAllowedExtension) {
+      setFile(selectedFile);
+    } else {
+      alert("Invalid file type. Supported types include images, PDFs, audio, video, and CAD files.");
+    }
   };
 
-  // const handleSubmit = () => {
-  //   const formData = new FormData();
-  //   formData.append('file', file)
-  //   fetch(
-  //     // file desitnation path
-  //     'localhost:3000', 
-  //     {
-  //       method: 'POST',
-  //       body: formData
-  //     }
-  //   ).then((response) => response.json()
-  //   .then(
-  //     (result) => {
-  //       console.log('success', result);
-  //     }
-  //   ))
-  //   .catch(error => {
-  //     console.error("Error", error);
-  //   })
-  // };
+  const uploadFile = async () => {
+    if (!file) return;
+    setUploading(true);
+
+    try {
+      const response = await axios.get("http://localhost:5000/api/files/generate-presigned-url", {
+        params: {
+          fileName: file.name,
+          fileType: file.type,
+        },
+      });
+
+      const { url } = response.data;
+
+      await axios.put(url, file, {
+        headers: {
+          "Content-Type": file.type,
+        },
+      });
+
+      const permanentUrl = url.split("?")[0]; 
+      setDownloadLink(permanentUrl);
+      alert("File uploaded successfully.");
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      alert(`Error uploading file: ${error.message}`);
+    } finally {
+      setUploading(false);
+    }
+  };
 
   return (
-    <div className="containerOne w-100 h-100">
+    <div className="containerOne">
       <h4 className="text-success">Uploading Document</h4>
-      <form>
-        <div
-          className="w-100 container border-3 border-dark-subtle d-flex flex-column align-items-center"
-          style={{ borderStyle: "dashed" }}
-        >
-          {/* Drag and drop */}
-          <div className="my-2">
-            <DragDrop />
-          </div>
-          <p className="fw-bold">OR</p>
-          {/* File upload */}
-          <div className="w-25">
-            <div>
-              <label
-                htmlFor="file-upload"
-                className="cursor-pointer"
-                id="fileUpload"
-              >
-                <FaFolderOpen size={50} color="brown" className="mx-4" />
-                <p className="block text-gray-400 font-normal">
-                  {
-                    !file ? "Browse Your Files" : file.name.toString()
-                  }
-                </p>
-              </label>
-            </div>
-            <input
-              id="file-upload"
-              type="file"
-              className="h-full w-full opacity-0 border"
-              name="file"
-              onChange={handleUpload}
-            />
-          </div>
-
-          {/* <button type="button" onClick={upload}>Upload</button> */}
+      <input type="file" required onChange={handleFileChange} />
+      <button onClick={uploadFile} disabled={!file || uploading}>
+        {uploading ? "Uploading..." : "Upload File"}
+      </button>
+      {downloadLink && (
+        <div>
+          <a href={downloadLink} target="_blank" rel="noopener noreferrer">
+            Download Uploaded File
+          </a>
         </div>
-      </form>
+      )}
     </div>
   );
-}
+};
+
+export default FileUploadScreen;
