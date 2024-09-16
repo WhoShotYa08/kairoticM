@@ -1,78 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Document from "../components/document";
-import { FaCircleArrowRight } from "react-icons/fa6";
-import { FaCircleArrowLeft } from "react-icons/fa6";
-
-const docData = [
-  {
-    id: 1,
-    name: "242 Wiring",
-    category: "Housing",
-    date: "30/06/24",
-    signatures: 6,
-  },
-  {
-    id: 2,
-    name: "Blueprint A",
-    category: "Commercial",
-    date: "01/07/24",
-    signatures: 8,
-  },
-  {
-    id: 3,
-    name: "Electrical Layout",
-    category: "Industrial",
-    date: "05/07/24",
-    signatures: 12,
-  },
-  {
-    id: 4,
-    name: "Plumbing Plan",
-    category: "Residential",
-    date: "10/07/24",
-    signatures: 5,
-  },
-  {
-    id: 5,
-    name: "Fire Safety Diagram",
-    category: "Public Building",
-    date: "15/07/24",
-    signatures: 10,
-  },
-];
+import { FaCircleArrowRight, FaCircleArrowLeft } from "react-icons/fa6";
+import axios from "axios";
 
 export default function SavedDocumentsScreen() {
+  const [files, setFiles] = useState([]);
+
+  const getFiles = async () => {
+    axios
+    .get("http://localhost:5000/api/files")
+    .then((response) => {
+      console.log(response.data);
+      setFiles([files]);
+      console.log(files);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+  useEffect(() => {
+    getFiles()
+  }, [files]);
+
   return (
     <div className="containerOne w-100 border h-100 table-responsive">
       <h4 className="text-success">Saved Documents</h4>
-      <table className="container-sm table table-striped table-hover  ">
+      <table className="container-sm table table-striped table-hover">
         <thead>
           <tr className="bg-light">
-            <th scope="col">Document ID</th>
             <th scope="col">Name</th>
-            <th scope="col">Category</th>
             <th scope="col">Date Uploaded</th>
-            <th scope="col">E-Signatures</th>
+            <th scope="col">Download</th>
           </tr>
         </thead>
         <tbody>
-          {docData.map((item, key) => (
+          {files.map((item) => (
             <Document
-              id={item.id}
-              name={item.name}
-              category={item.category}
-              date={item.date}
-              signature={item.signatures}
+              key={item._id} // Ensure you're using the MongoDB `_id` field as a unique key
+              name={item.name} // The correct field name for the file
+              date={new Date(item.createdAt).toLocaleDateString()} // Formatting date if timestamps are used
+              link={item.url} // The correct field for the file URL
             />
           ))}
         </tbody>
       </table>
       <div className="d-flex justify-content-end">
-        <button type="button" class="btn btn-light bg-transparent mx-2 ">
-          <FaCircleArrowLeft size={20} color="black"/>
+        <button type="button" className="btn btn-light bg-transparent mx-2" onClick={getFiles}>
+          <FaCircleArrowLeft size={20} color="black" />
         </button>
-        <button type="button" class="btn btn-light bg-transparent">
-          <FaCircleArrowRight size={20} color="black"/>
+        <button type="button" className="btn btn-light bg-transparent">
+          <FaCircleArrowRight size={20} color="black" />
         </button>
       </div>
     </div>

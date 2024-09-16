@@ -13,6 +13,8 @@ import "./assets/bootstrap.custom.css";
 import "./assets/styles.css";
 import "./assets/animations.css";
 import "./index.css";
+import "./output.css";
+import 'semantic-ui-css/semantic.min.css'
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import PrivateRoute from "./components/PrivateRoute";
@@ -21,6 +23,10 @@ import LoginScreen from "./screens/LoginScreen";
 import LandingPage from "./screens/LandingScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import Dashboard from "./screens/Dashboard";
+
+export const config = {
+  API_BASE_URL: process.env.REACT_APP_API_BASE_URL,
+}
 
 const router = createBrowserRouter(
   createRoutesFromElements(
