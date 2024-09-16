@@ -13,6 +13,8 @@ import "./assets/bootstrap.custom.css";
 import "./assets/styles.css";
 import "./assets/animations.css";
 import "./index.css";
+import "./output.css";
+import 'semantic-ui-css/semantic.min.css'
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import PrivateRoute from "./components/PrivateRoute";
