@@ -1,11 +1,11 @@
-const Document = ({date, id, name, category, signature}) => {
+const Document = ({date, id, name, category, link}) => {
   return (
     <tr >
-      <th scope="row">{id}</th>
+      {/* <th scope="row">{id}</th> */}
       <td>{name}</td>
-      <td>{category}</td>
+      {/* <td>{category}</td> */}
       <td>{date}</td>
-      <td >{signature}</td>
+      <td >{link}</td>
     </tr>
   );
 };
