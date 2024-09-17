@@ -3,9 +3,10 @@ import File from "../models/fileModel.js";
 
 const filesRouter = express.Router();
 
-filesRouter.get("/api//files", async (req, res) => {
+filesRouter.get("/getFiles", async (req, res) => {
   try {
-    const files = await File.find();
+    const files = await File.find({});
+    // res.json(files);
     console.log(files);
     
     res.json(files);

@@ -118,7 +118,11 @@ const Dashboard = () => {
             <div className="info py-3"></div>
           </div>
           <ul className="nav">
-            <li className={`nav-item ${screen === "useranalytics" ? "active" : ""}`}>
+            <li
+              className={`nav-item ${
+                screen === "useranalytics" ? "active" : ""
+              }`}
+            >
               <a onClick={() => setScreen("useranalytics")}>
                 <MdPeople
                   size={20}
@@ -188,9 +192,14 @@ const Dashboard = () => {
       </div>
       <div
         className="main-panel"
-        style={{ height: "100%", display: 'block'}}
+        style={{
+          // height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "5%", // Moves the panel down by 5%
+        }}
       >
-        <div className="content" style={{ display: 'block' }}>
+        <div style={{ display: "block", width: "100%" }}>
           {screen === "upload" ? (
             <FileUploadScreen />
           ) : screen === "saved" ? (
@@ -205,23 +214,6 @@ const Dashboard = () => {
             <ProgressTracking />
           )}
         </div>
-
-        <footer className="footer">
-          <div className="container-fluid">
-            <nav className="pull-left">
-              <ul className="nav">
-                <li className="nav-item">
-                  <a className="nav-link" href="http://www.themekita.com">
-                    Kairotic M
-                  </a>
-                </li>
-                <li className="nav-item"></li>
-                <li className="nav-item"></li>
-              </ul>
-            </nav>
-            <div className="copyright ml-auto">Made with React.js -- 2024</div>
-          </div>
-        </footer>
       </div>
     </div>
   );
