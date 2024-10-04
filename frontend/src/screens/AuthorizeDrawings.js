@@ -49,7 +49,6 @@ export default function AuthorizeDrawingScreen() {
     }
   };
   
-
   // Reject file handler
   const handleReject = (file) => {
     setSelectedFile(file);
