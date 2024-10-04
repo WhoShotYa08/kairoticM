@@ -1,11 +1,11 @@
 .accepted {
-    background-color: #d4edda; /* Green background for accepted */
+    background-color: #d4edda;
     transition: background-color 0.5s ease;
   }
   
   .unaccepted {
-    background-color: #f8d7da; /* Light red background for unaccepted */
-    opacity: 0.5; /* Gray out unaccepted files */
+    background-color: #f8d7da;
+    opacity: 0.5;
     transition: background-color 0.5s ease, opacity 0.5s ease;
   }
   

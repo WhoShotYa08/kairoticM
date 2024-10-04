@@ -55,13 +55,13 @@ export default function AuthorizeDrawingScreen() {
     setShowModal(true);
   };
 
-// Handle submitting the reject comment
-const handleSubmitReject = () => {
-  console.log(`Rejected ${selectedFile.name} with comment: ${rejectComment}`);
-  sendEmailNotification(selectedFile._id, "rejected", rejectComment); // Send rejection email
-  setShowModal(false); // Close modal after submission
-  setRejectComment(""); // Reset comment
-};
+  // Handle submitting the reject comment
+  const handleSubmitReject = () => {
+    console.log(`Rejected ${selectedFile.name} with comment: ${rejectComment}`);
+    sendEmailNotification(selectedFile._id, "rejected", rejectComment);
+    setShowModal(false); 
+    setRejectComment("");
+  };
 
   // Function to send email notification
   const sendEmailNotification = async (file, status, comment = "") => {
