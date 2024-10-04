@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import $ from "jquery";
 import "jquery.scrollbar";
 import "jquery.scrollbar/jquery.scrollbar.css";
+
 import "../assets/dashboard/css/ready.css";
 import "../assets/dashboard/css/demo.css";
 import FileUploadScreen from "./FileUpload";
@@ -16,7 +17,7 @@ import { FaFileSignature } from "react-icons/fa6";
 import { IoCloudUpload } from "react-icons/io5";
 import { IoIosSave } from "react-icons/io";
 import "../assets/dashboard/sass/styles.scss";
-import Header from "../components/Header";
+import Header from "../components/header";
 import DropdownMenu from "../components/Nofications";
 import { BsThreeDotsVertical } from "react-icons/bs";
 

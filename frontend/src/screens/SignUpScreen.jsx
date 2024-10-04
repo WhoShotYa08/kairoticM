@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import styled, { keyframes } from "styled-components";
 import { FaCog } from "react-icons/fa";
 import { FaHelmetSafety } from "react-icons/fa6";
-import Loader from "../components/Loader";
+import Loader from "../components/loader";
 import FormContainer from "../components/FormContainer";
 import "../assets/styles.css";
 
