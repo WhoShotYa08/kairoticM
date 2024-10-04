@@ -18,6 +18,7 @@ import { IoCloudUpload } from "react-icons/io5";
 import { IoIosSave } from "react-icons/io";
 import "../assets/dashboard/sass/styles.scss";
 import Header from "../components/header";
+// import Notifications from "../components/Nofications";
 import DropdownMenu from "../components/Nofications";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
@@ -191,16 +192,8 @@ const Dashboard = () => {
           </ul>
         </div>
       </div>
-      <div
-        className="main-panel"
-        style={{
-          // height: "100%",
-          display: "flex",
-          justifyContent: "center",
-          marginTop: "5%", // Moves the panel down by 5%
-        }}
-      >
-        <div style={{ display: "block", width: "100%" }}>
+      <div className="main-panel" style={{zIndex: 0}}>
+        <div className="content">
           {screen === "upload" ? (
             <FileUploadScreen />
           ) : screen === "saved" ? (
