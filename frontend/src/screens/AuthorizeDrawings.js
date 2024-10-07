@@ -82,7 +82,6 @@ export default function AuthorizeDrawingScreen() {
 
     try {
       const response = await axios.post("http://localhost:5000/api/assign", postData);
-
       if (response.status === 200) {
         alert("Users successfully assigned!");
       } else {

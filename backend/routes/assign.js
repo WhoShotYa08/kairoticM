@@ -3,15 +3,17 @@ import Assigned from "../models/assignModel.js";
 
 const assignedRouter = express.Router();
 //just add to database
-assignedRouter.post("/assign", async (req, res) => {
+assignedRouter.post("/api/assign", async (req, res) => {
   console.log(`${req.method} ${req.url}`);
   try {
+    console.log("enter try");
+    
     const { drawingId, employeeAssigned } = req.body;
     console.log(req.body);
     
     const assigned = await Assigned({
       drawingId,
-      // employeeAssigned,
+      employeeAssigned,
     });
     await assigned.save();
     res.status(200).json(assigned);
