@@ -18,6 +18,15 @@ export const userApiSplice = apiSlice.injectEndpoints({
       }),
     }),
 
+    getUsers: builder.query({
+      query: () => ({
+        url: `${USERS_URL}`,
+        method: "GET",
+      }),
+      providesTags: ["User"],
+      keepUnusedDataFor: 1000,
+    }),
+
     register: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}`,
@@ -28,5 +37,5 @@ export const userApiSplice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation } =
+export const { useLoginMutation, useLogoutMutation, useGetUsersQuery,useRegisterMutation } =
   userApiSplice;

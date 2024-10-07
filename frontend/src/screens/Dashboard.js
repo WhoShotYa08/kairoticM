@@ -19,9 +19,12 @@ import "../assets/dashboard/sass/styles.scss";
 import Header from "../components/Header";
 import DropdownMenu from "../components/Nofications";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const [screen, setScreen] = useState("upload");
+  const { userInfo } = useSelector((state) => state.auth);
+  
 
   useEffect(() => {
     $(".scrollbar-inner").scrollbar();
@@ -118,75 +121,91 @@ const Dashboard = () => {
             <div className="info py-3"></div>
           </div>
           <ul className="nav">
-            <li
-              className={`nav-item ${
-                screen === "useranalytics" ? "active" : ""
-              }`}
-            >
-              <a onClick={() => setScreen("useranalytics")}>
-                <MdPeople
-                  size={20}
-                  className="mx-2"
-                  color={getIconColor("useranalytics")}
-                />
-                <p>User Analytics</p>
-              </a>
-            </li>
-            <li className={`nav-item ${screen === "upload" ? "active" : ""}`}>
-              <a onClick={() => setScreen("upload")}>
-                <IoCloudUpload
-                  size={20}
-                  className="mx-2"
-                  color={getIconColor("upload")}
-                />
-                <p>Upload</p>
-                {/* <span className="badge badge-count">5</span> */}
-              </a>
-            </li>
-            <li className={`nav-item ${screen === "saved" ? "active" : ""}`}>
-              <a onClick={() => setScreen("saved")}>
-                <IoIosSave
-                  size={20}
-                  className="mx-2"
-                  color={getIconColor("saved")}
-                />
-                <p>Saved</p>
-                {/* <span className="badge badge-count">14</span> */}
-              </a>
-            </li>
-            <li className={`nav-item ${screen === "signee" ? "active" : ""}`}>
-              <a onClick={() => setScreen("signee")}>
-                <FaFileSignature
-                  size={20}
-                  className="mx-2"
-                  color={getIconColor("signee")}
-                />
-                <p>Authorize Signees</p>
-                {/* <span className="badge badge-count">50</span> */}
-              </a>
-            </li>
-            <li className={`nav-item ${screen === "drawing" ? "active" : ""}`}>
-              <a onClick={() => setScreen("drawing")}>
-                <MdPeople
-                  size={20}
-                  className="mx-2"
-                  color={getIconColor("drawing")}
-                />
-                <p>Authorize Drawings</p>
-                {/* <span className="badge badge-count">6</span> */}
-              </a>
-            </li>
-            <li className={`nav-item ${screen === "progress" ? "active" : ""}`}>
-              <a onClick={() => setScreen("progress")}>
-                <FaCalendarDay
-                  size={20}
-                  className="mx-2"
-                  color={getIconColor("progress")}
-                />
-                <p>Progress Tracking</p>
-                {/* <span className="badge badge-success">3</span> */}
-              </a>
-            </li>
+            {userInfo.isEmployee.trim() === 'false' ? (
+              <li className={`nav-item ${screen === "saved" ? "active" : ""}`}>
+                <a onClick={() => setScreen("saved")}>
+                  <IoIosSave
+                    size={20}
+                    className="mx-2 my-3"
+                    color={getIconColor("saved")}
+                  />
+                  <p>Saved Documents</p>
+                  {/* <span className="badge badge-count">14</span> */}
+                </a>
+              </li>
+            ) : (
+              <>
+                <li
+                  className={`nav-item ${
+                    screen === "useranalytics" ? "active" : ""
+                  }`}
+                >
+                  <a onClick={() => setScreen("useranalytics")}>
+                    <MdPeople
+                      size={20}
+                      className="mx-2"
+                      color={getIconColor("useranalytics")}
+                    />
+                    <p>Analytics</p>
+                  </a>
+                </li>
+                <li
+                  className={`nav-item ${screen === "upload" ? "active" : ""}`}
+                >
+                  <a onClick={() => setScreen("upload")}>
+                    <IoCloudUpload
+                      size={20}
+                      className="mx-2"
+                      color={getIconColor("upload")}
+                    />
+                    <p>Upload</p>
+                    {/* <span className="badge badge-count">5</span> */}
+                  </a>
+                </li>
+                <li
+                  className={`nav-item ${screen === "saved" ? "active" : ""}`}
+                >
+                  <a onClick={() => setScreen("saved")}>
+                    <IoIosSave
+                      size={20}
+                      className="mx-2"
+                      color={getIconColor("saved")}
+                    />
+                    <p>Saved Documents</p>
+                    {/* <span className="badge badge-count">14</span> */}
+                  </a>
+                </li>
+
+                <li
+                  className={`nav-item ${screen === "drawing" ? "active" : ""}`}
+                >
+                  <a onClick={() => setScreen("drawing")}>
+                    <MdPeople
+                      size={20}
+                      className="mx-2"
+                      color={getIconColor("drawing")}
+                    />
+                    <p>Authorize Drawings</p>
+                    {/* <span className="badge badge-count">6</span> */}
+                  </a>
+                </li>
+                <li
+                  className={`nav-item ${
+                    screen === "progress" ? "active" : ""
+                  }`}
+                >
+                  <a onClick={() => setScreen("progress")}>
+                    <FaCalendarDay
+                      size={20}
+                      className="mx-2"
+                      color={getIconColor("progress")}
+                    />
+                    <p>Progress Tracking</p>
+                    {/* <span className="badge badge-success">3</span> */}
+                  </a>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
@@ -199,21 +218,27 @@ const Dashboard = () => {
           marginTop: "5%", // Moves the panel down by 5%
         }}
       >
-        <div style={{ display: "block", width: "100%" }}>
-          {screen === "upload" ? (
-            <FileUploadScreen />
-          ) : screen === "saved" ? (
+        {userInfo.isEmployee.trim() === "false" ? (
+          <div style={{ display: "block", width: "100%" }}>
             <SavedDocumentsScreen />
-          ) : screen === "signee" ? (
-            <AuthorizeSigneesScreen />
-          ) : screen === "drawing" ? (
-            <AuthorizeDrawingScreen />
-          ) : screen === "useranalytics" ? (
-            <UserAnalytics />
-          ) : (
-            <ProgressTracking />
-          )}
-        </div>
+          </div>
+        ) : (
+          <div style={{ display: "block", width: "100%" }}>
+            {screen === "upload" ? (
+              <FileUploadScreen />
+            ) : screen === "saved" ? (
+              <SavedDocumentsScreen />
+            ) : screen === "signee" ? (
+              <AuthorizeSigneesScreen />
+            ) : screen === "drawing" ? (
+              <AuthorizeDrawingScreen />
+            ) : screen === "useranalytics" ? (
+              <UserAnalytics />
+            ) : (
+              <ProgressTracking />
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

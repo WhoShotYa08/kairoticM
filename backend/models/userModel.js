@@ -25,16 +25,16 @@ const userSchema = new mongoose.Schema(
     },
 
     isEmployee: {
-      type: Boolean,
+      type: String,
       required: true,
-      default: false,
+      default: "true",
     },
 
     isAuthorized: {
       type: Boolean,
       required: true,
-      default: false,
-    },
+      default: true,
+    }
   },
   { timestamps: true }
 );

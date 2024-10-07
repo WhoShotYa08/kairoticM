@@ -77,6 +77,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 // @access  Private
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
+  
 
   if (user) {
     res.status(200).json({
@@ -131,7 +132,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 // @route   GET /api/users
 // @access  Private/Admin
 const getUsers = asyncHandler(async (req, res) => {
-  res.send("get users");
+  const users = await User.find({});
+  // res.send("get users");
+  res.status(200).json(users); 
 });
 
 // @desc    Get users by id

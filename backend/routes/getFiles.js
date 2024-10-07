@@ -7,7 +7,7 @@ filesRouter.get("/getFiles", async (req, res) => {
   try {
     const files = await File.find({});
     // res.json(files);
-    console.log(files);
+    // console.log(files);
     
     res.json(files);
   } catch (error) {

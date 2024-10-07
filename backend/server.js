@@ -8,6 +8,7 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import { createRouteHandler } from "uploadthing/express";
 import { uploadRouter } from "./routes/uploadThing.js";
 import filesRouter from "./routes/getFiles.js";
+// import getUser from "./routes/userData.js";
 
 dotenv.config();
 const port = process.env.PORT || 5000;
