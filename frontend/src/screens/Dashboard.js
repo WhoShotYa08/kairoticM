@@ -16,7 +16,7 @@ import { FaFileSignature } from "react-icons/fa6";
 import { IoCloudUpload } from "react-icons/io5";
 import { IoIosSave } from "react-icons/io";
 import "../assets/dashboard/sass/styles.scss";
-import Header from "../components/Header";
+import Header from "../components/header";
 import DropdownMenu from "../components/Nofications";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
