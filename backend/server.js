@@ -3,11 +3,14 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
-import s3Router from "./routes/s3.js";
+// import s3Router from "./routes/s3.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import { createRouteHandler } from "uploadthing/express";
 import { uploadRouter } from "./routes/uploadThing.js";
 import filesRouter from "./routes/getFiles.js";
+// import getUser from "./routes/userData.js";
+// import assignedRouter from "./routes/assign.js";
+import assignedRouter from "./routes/assign.js";
 
 dotenv.config();
 const port = process.env.PORT || 5000;
@@ -26,6 +29,8 @@ app.use(
   })
 );
 
+app.use("/api/assignProject", assignedRouter);
+
 app.use("/api/users", userRoutes);
 app.use(
   "/api/upload",
@@ -34,9 +39,11 @@ app.use(
     config: { logLevel: "debug", isDev: true, },
   })
 );
- 
+
+
 app.use("/api/files", filesRouter);
 // app.use('/api/files', s3Router);
+
 
 app.use(notFound);
 app.use(errorHandler);

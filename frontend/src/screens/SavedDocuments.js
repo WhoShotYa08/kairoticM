@@ -10,6 +10,7 @@ import {
   Table,
 } from "semantic-ui-react";
 
+
 export default function SavedDocumentsScreen() {
   const [files, setFiles] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);

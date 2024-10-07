@@ -1,18 +1,16 @@
-import { Navbar, Nav, Container, Badge, NavDropdown } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
 import { PopupMenu } from "react-simple-widgets";
 import { IoPersonCircle } from "react-icons/io5";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const { userInfo } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [logoutApiCall] = useLogoutMutation();
 
   const logoutHandler = async () => {
@@ -21,7 +19,7 @@ export default function Header() {
       dispatch(logout());
       navigate("/");
     } catch (error) {
-      console.log(error);
+      console.log("Logout error:", error);
     }
   };
 
@@ -30,7 +28,7 @@ export default function Header() {
       {userInfo ? (
         <div className="text-end">
           <PopupMenu>
-            <button type="button" className="btn btn-link"  >
+            <button type="button" className="btn btn-link">
               <IoPersonCircle size={20} color="grey" />
             </button>
 
@@ -55,21 +53,9 @@ export default function Header() {
                 >
                   ROLES
                 </p>
-                <p style={{ fontSize: 12 }}>
-                  {["Submitter", "Project manager"].join(", ")}
-                </p>
+                <p style={{ fontSize: 12 }}>{Object.values(userInfo)[4] === "true" ? "Employee" : "Manager"}</p>
 
                 <hr className="mb-0" style={{ margin: "0 -24px 0" }} />
-
-                <div
-                  className="list-group list-group-flush"
-                  style={{ margin: "0 -24px 0" }}
-                >
-                  <button className="list-group-item list-group-item-action px-4">
-                    <small>Other Requests</small>
-                  </button>
-                </div>
-
                 <hr style={{ margin: "0 -24px 24px" }} />
 
                 <div className="d-grid">
@@ -115,12 +101,7 @@ export default function Header() {
               </p>
 
               <hr className="mb-0" style={{ margin: "0 -24px 0" }} />
-
-              <div
-                className="list-group list-group-flush"
-                style={{ margin: "0 -24px 0" }}
-              ></div>
-
+              <div className="list-group list-group-flush" style={{ margin: "0 -24px 0" }}></div>
               <hr style={{ margin: "0 -24px 24px" }} />
 
               <div className="d-grid">
