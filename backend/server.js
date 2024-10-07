@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
-import s3Router from "./routes/s3.js";
+// import s3Router from "./routes/s3.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import { createRouteHandler } from "uploadthing/express";
 import { uploadRouter } from "./routes/uploadThing.js";
@@ -29,7 +29,7 @@ app.use(
   })
 );
 
-app.use("/api/assign", assignedRouter);
+app.use("/api/assignProject", assignedRouter);
 
 app.use("/api/users", userRoutes);
 app.use(

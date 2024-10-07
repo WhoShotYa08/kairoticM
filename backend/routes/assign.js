@@ -3,7 +3,7 @@ import Assigned from "../models/assignModel.js";
 
 const assignedRouter = express.Router();
 //just add to database
-assignedRouter.post("/api/assign", async (req, res) => {
+assignedRouter.post("/assign", async (req, res) => {
   console.log(`${req.method} ${req.url}`);
   try {
     console.log("enter try");
