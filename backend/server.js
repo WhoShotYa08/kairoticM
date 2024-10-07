@@ -9,6 +9,8 @@ import { createRouteHandler } from "uploadthing/express";
 import { uploadRouter } from "./routes/uploadThing.js";
 import filesRouter from "./routes/getFiles.js";
 // import getUser from "./routes/userData.js";
+// import assignedRouter from "./routes/assign.js";
+import assignedRouter from "./routes/assign.js";
 
 dotenv.config();
 const port = process.env.PORT || 5000;
@@ -27,6 +29,8 @@ app.use(
   })
 );
 
+app.use("/api/assign", assignedRouter);
+
 app.use("/api/users", userRoutes);
 app.use(
   "/api/upload",
@@ -35,9 +39,11 @@ app.use(
     config: { logLevel: "debug", isDev: true, },
   })
 );
- 
+
+
 app.use("/api/files", filesRouter);
 // app.use('/api/files', s3Router);
+
 
 app.use(notFound);
 app.use(errorHandler);

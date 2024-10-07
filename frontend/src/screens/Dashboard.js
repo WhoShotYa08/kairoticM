@@ -118,7 +118,7 @@ const Dashboard = () => {
             <div className="photo">
               {/* <img src="../assets/dashboard/css/img/profile.jpg" /> */}
             </div>
-            <div className="info py-3"></div>
+            <div className="info py-0"></div>
           </div>
           <ul className="nav">
             {userInfo.isEmployee.trim() === 'false' ? (
@@ -135,20 +135,6 @@ const Dashboard = () => {
               </li>
             ) : (
               <>
-                <li
-                  className={`nav-item ${
-                    screen === "useranalytics" ? "active" : ""
-                  }`}
-                >
-                  <a onClick={() => setScreen("useranalytics")}>
-                    <MdPeople
-                      size={20}
-                      className="mx-2"
-                      color={getIconColor("useranalytics")}
-                    />
-                    <p>Analytics</p>
-                  </a>
-                </li>
                 <li
                   className={`nav-item ${screen === "upload" ? "active" : ""}`}
                 >
@@ -232,8 +218,6 @@ const Dashboard = () => {
               <AuthorizeSigneesScreen />
             ) : screen === "drawing" ? (
               <AuthorizeDrawingScreen />
-            ) : screen === "useranalytics" ? (
-              <UserAnalytics />
             ) : (
               <ProgressTracking />
             )}
