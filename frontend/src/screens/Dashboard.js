@@ -121,7 +121,7 @@ const Dashboard = () => {
             <div className="info py-0"></div>
           </div>
           <ul className="nav">
-            {userInfo.isEmployee.trim() === 'false' ? (
+            {userInfo.isEmployee.trim() === 'true' ? (
               <li className={`nav-item ${screen === "saved" ? "active" : ""}`}>
                 <a onClick={() => setScreen("saved")}>
                   <IoIosSave
@@ -204,7 +204,7 @@ const Dashboard = () => {
           marginTop: "5%", // Moves the panel down by 5%
         }}
       >
-        {userInfo.isEmployee.trim() === "false" ? (
+        {userInfo.isEmployee.trim() === "true" ? (
           <div style={{ display: "block", width: "100%" }}>
             <SavedDocumentsScreen />
           </div>

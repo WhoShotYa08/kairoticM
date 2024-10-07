@@ -27,7 +27,7 @@ export default function AuthorizeDrawingScreen() {
         key: file._id.$oid, // Use the _id as the key
         text: file.name,     // Use the name as the display text
         value: file.url,     // Use the URL as the value
-        drawingId: file._id.$oid, // Add drawingId
+        drawingId: file.url, // Use the URL as drawingId
       }));
       setOptions(formattedOptions); // Update options state with formatted options
     } catch (error) {
@@ -41,10 +41,10 @@ export default function AuthorizeDrawingScreen() {
 
   // Example users (replace this with actual data if needed)
   useEffect(() => {
-    // This should be replaced with a call to your API to get the users
     setUsers([
-      { id: 1, name: "John Doe", email: "john@example.com", bool: false },
-      { id: 2, name: "Jane Smith", email: "jane@example.com", bool: false },
+      { id: 1, name: "Brian Mabukwa", email: "mabukwabt@gmail.com", bool: false },
+      { id: 2, name: "Adrien Belo", email: "tarashisensai@gmail.com", bool: false },
+      { id: 2, name: "Takunda Mabukwa", email: "prodigy@gmail.com", bool: false },
     ]);
   }, []);
 
@@ -64,24 +64,21 @@ export default function AuthorizeDrawingScreen() {
   const handleFileChange = (e, { value }) => {
     const selectedOption = options.find(option => option.value === value);
     if (selectedOption) {
-      setSelectedFileId(selectedOption.drawingId); // Set the selected drawing ID
+      setSelectedFileId(selectedOption.drawingId); // Set the selected drawing ID from the selected option (URL)
     }
   };
 
   // Submit selected users to backend
   const handleSubmit = async () => {
-    // Prepare the data to be sent
     const postData = {
-      drawingId: selectedFileId, // Include the drawingId
+      drawingId: selectedFileId, // Include the drawingId from selected option (URL)
       employeeAssigned: selectedUsers, // Pass selected users array
-      
     };
 
-    // Log the data before posting
     console.log("Data to be submitted:", postData);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/assignProject/assign", postData);
+      const response = await axios.post("http://localhost:5000/api/assignProject/assign", postData); // Ensure the correct endpoint
       if (response.status === 200) {
         alert("Users successfully assigned!");
       } else {

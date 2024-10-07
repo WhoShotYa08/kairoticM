@@ -19,7 +19,6 @@ const assignedUsersSchema = new mongoose.Schema(
     drawingId: {
       type: String,
       required: false,  // Drawing ID is required,
-      default: "1"
     },
     employeeAssigned: {
       type: [employeeSchema],  // Array of employee objects
